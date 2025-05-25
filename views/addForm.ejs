@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/<%= cssFile %>.css" />
+  </head>
+  <body>
+    <header class="header">
+      Student Information Managemant System
+    </header>
+    <div class="app-container">
+      <!-- Navigation Panel -->
+      <nav class="navigation-panel collapsed" id="navPanel">
+
+        <div class="nav-menu">
+          <span class="nav-item nav-header nav-title">
+            <div>
+              <i class="fa-solid fa-bars"></i>
+              <span class="nav-item-details">Navigation</span>
+            </div>
+          </span>
+          <a href="/studentslist" class="nav-item active">
+            <div>
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span class="nav-item-details">Search Students</span>
+            </div>
+          </a>
+          <a href="/form" class="nav-item">
+            <div>
+              <i class="fa-solid fa-plus"></i>
+              <span class="nav-item-details">Add Student</span>
+            </div>
+          </a>
+          <a href="/scholarship" class="nav-item">
+            <div>
+              <i class="fa-brands fa-google-scholar"></i>
+              <span class="nav-item-details">Scholarship</span>
+            </div>
+          </a>
+          <a href="/transport" class="nav-item">
+            <div>
+              <i class="fa-solid fa-bus-simple"></i>
+              <span class="nav-item-details">Transport</span>
+            </div>
+          </a>
+          <a href="/recycle" class="nav-item">
+            <div>
+              <i class="fa-solid fa-trash"></i>
+              <span class="nav-item-details">Recycle bin</span>
+            </div>
+          </a>
+          <a href="#" class="nav-item">
+            <div>
+              <i class="fa-regular fa-clipboard"></i>
+              <span class="nav-item-details">Records</span>
+            </div>
+          </a>
+          <a href="#" class="nav-item">
+            <div>
+              <i class="fa-solid fa-gear"></i>
+              <span class="nav-item-details">Settings</span>
+            </div>
+          </a>
+          <a href="#" class="nav-item">
+            <div>
+              <i class="fa-solid fa-clipboard"></i>
+              <span class="nav-item-details">Reports</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="nav-footer">
+          <div class="user-profile">
+            <div class="user-avatar">AD</div>
+            <div class="user-info">
+              <div class="user-name">Admin User</div>
+              <div class="user-role">Administrator</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- The main body of the page goes here -->
+       <!-- Main Content -->
+<main class="main-content" id="mainContent">
+  <form method="post" action="/form/submit">
+    <!-- Office use -->
+    <div class="office0 heading rounded-top">Office Use</div>
+    <div class="office1 full-width">
+      <h6>Programme Admitted:</h6>
+      <input
+        type="text"
+        name="department"
+        placeholder="Programme Admitted"
+        class="fourColInp"
+      />
+    </div>
+    <div class="office2 form-group">
+      <h6>Mode Of Admission:</h6>
+      <select name="modeAdmission">
+        <option value="" disabled selected>Select</option>
+        <option value="Government">Government</option>
+        <option value="Management">Management</option>
+        <option value="7.5%">7.5%</option>
+        <option value="Sports">Sports</option>
+      </select>
+    </div>
+    <div class="office3 form-group">
+      <h6>Mode of Entry:</h6>
+      <select name="modeOfEntry">
+        <option value="" disabled selected>Select</option>
+        <option value="1st Year">1st Year</option>
+        <option value="Lateral">Lateral</option>
+        <option value="Transfer">Transfer</option>
+      </select>
+    </div>
+    <div class="office4 form-group">
+      <h6>TNEA Appl.No:</h6>
+      <input type="text" name="tneaNo" placeholder="TNEA Application Number" />
+    </div>
+    <div class="office5 form-group">
+      <h6>Allotment Number:</h6>
+      <input type="number" name="AllotmentNo" placeholder="Allotment Number" />
+    </div>
+    <div class="office6 full-width">
+      <h6>Date Of Admission:</h6>
+      <input
+        type="number"
+        name="AdmissionDate"
+        placeholder="Enter Admission Date"
+        class="fourColInp"
+      />
+    </div>
+    <div class="office7 full-width">
+      <h6>Tution Fees Per Year:</h6>
+      <input
+        type="number"
+        name="yearFees"
+        placeholder="Enter Yearly Fees"
+        class="fourColInp"
+      />
+    </div>
+    <div class="office8 full-width">
+      <h6>Institution Roll Number:</h6>
+      <input
+        type="number"
+        name="rollNo"
+        placeholder="Enter Instution Roll Number"
+        class="fourColInp"
+      />
+    </div>
+    <div class="office9 full-width rounded-bottom">
+      <h6>Register Number</h6>
+      <input
+        type="number"
+        name="regNo"
+        placeholder="Enter Register Number"
+        class="fourColInp"
+      />
+    </div>
+    <div class="spacer"></div>
+
+    <!-- The Appliaction form -->
+    <div class="detail0 heading rounded-top">Application form</div>
+
+    <!-- Personal details section -->
+    <div class="full-width">1. Personal Details</div>
+
+    <div class="full-width">
+      <h6>Name of the candidate:</h6>
+      <input
+        type="text"
+        name="name"
+        placeholder="Enter your name"
+        class="long-input"
+      />
+    </div>
+
+    <div class="detail2 form-group">
+      <h6>Date Of Birth:</h6>
+      <input type="date" name="dob" />
+    </div>
+
+    <div class="detail3 form-group">
+      <h6>Age:</h6>
+      <input type="text" name="age" placeholder="Enter Age" />
+    </div>
+
+    <div class="detail4 form-group">
+      <h6>Gender:</h6>
+      <select name="gender">
+        <option value="" disabled selected>Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+
+    <div class="detail5 form-group">
+      <h6>Blood Group:</h6>
+      <input type="text" name="bloodGroup" placeholder="Enter blood group" />
+    </div>
+
+    <div class="detail6 form-group">
+      <h6>Community:</h6>
+      <select name="Community">
+        <option value="" disabled selected>Select Community</option>
+        <option value="OC">OC</option>
+        <option value="BC">BC</option>
+        <option value="BCM">BCM</option>
+        <option value="MBC">MBC</option>
+        <option value="DNC">DNC</option>
+        <option value="SC">SC</option>
+        <option value="SCA">SCA</option>
+        <option value="SCC">SCC</option>
+        <option value="ST">ST</option>
+      </select>
+    </div>
+
+    <div class="detail7 form-group">
+      <h6>Religion:</h6>
+      <select name="religion" id="religion">
+        <option value="" disabled selected>Select religion</option>
+        <option value="Hindu">Hindu</option>
+        <option value="Christian">Christian</option>
+        <option value="Muslim">Muslim</option>
+      </select>
+    </div>
+
+    <div class="detail8 form-group">
+      <h6>Caste:</h6>
+      <input type="text" name="caste" placeholder="Enter caste" />
+    </div>
+
+    <div class="detail9 form-group">
+      <h6>Nationality:</h6>
+      <input type="text" name="nationality" placeholder="Enter nationality" />
+    </div>
+
+    <div class="detail10 form-group">
+      <h6>Mother Tongue:</h6>
+      <input
+        type="text"
+        name="motherTongue"
+        placeholder="enter mother tongue"
+      />
+    </div>
+
+    <div class="detail11 form-group">
+      <h6>Aadhar number:</h6>
+      <input type="text" name="aadharNum" placeholder="Enter Aadhar number" />
+    </div>
+
+    <div class="detail12 multi-input-group">
+      <span class="multi-input-group-span"><h3>Address:</h3></span>
+      <span class="multi-input-group-span"
+        ><h6>House no:</h6>
+        <input
+          type="text"
+          name="houseNo"
+          id="houseNo"
+          placeholder="Enter house no"
+          class="long-input"
+        />
+      </span>
+      <span class="multi-input-group-span">
+        <h6>Street:</h6>
+        <input
+          type="text"
+          name="street"
+          id="street"
+          placeholder="Enter street"
+          class="long-input"
+        />
+      </span>
+      <span class="multi-input-group-span"
+        ><h6>Village/Taluk:</h6>
+        <input
+          type="text"
+          name="village"
+          id="village"
+          placeholder="Enter village name"
+          class="long-input"
+        />
+      </span>
+    </div>
+
+    <div class="detail13 combined">
+      <span class="combinedSpan">
+        <h6>City:</h6>
+        <input
+          type="text"
+          name="city"
+          placeholder="Enter city"
+          class="long-input"
+        />
+      </span>
+
+      <span class="combinedSpan">
+        <h6>State:</h6>
+        <input
+          type="text"
+          name="state"
+          placeholder="Enter state"
+          class="long-input"
+        />
+      </span>
+    </div>
+
+    <div class="detail14 combined">
+      <span class="combinedSpan">
+        <h6>District:</h6>
+        <input
+          list="districtList"
+          placeholder="Enter district"
+          class="long-input districtList"
+        />
+        <datalist id="districtList">
+          <option value="Ariyalur"></option>
+          <option value="Chengalpattu"></option>
+          <option value="Chennai"></option>
+          <option value="Coimbatore"></option>
+          <option value="Cuddalore"></option>
+          <option value="Dharmapuri"></option>
+          <option value="Dindigul"></option>
+          <option value="Erode"></option>
+          <option value="Kallakurichi"></option>
+          <option value="Kancheepuram"></option>
+          <option value="Karur"></option>
+          <option value="Krishnagiri"></option>
+          <option value="Madurai"></option>
+          <option value="Nagapattinam"></option>
+          <option value="Namakkal"></option>
+          <option value="Nilgiris"></option>
+          <option value="Perambalur"></option>
+          <option value="Pudukottai"></option>
+          <option value="Ramanathapuram"></option>
+          <option value="Ranipet"></option>
+          <option value="Salem"></option>
+          <option value="Sivaganga"></option>
+          <option value="Tenkasi"></option>
+          <option value="Thanjavur"></option>
+          <option value="Theni"></option>
+          <option value="Thoothukudi"></option>
+          <option value="Tiruchirappalli"></option>
+          <option value="Tirunelveli"></option>
+          <option value="Tirupathur"></option>
+          <option value="Tiruppur"></option>
+          <option value="Tiruvallur"></option>
+          <option value="Tiruvannamalai"></option>
+          <option value="Tiruvarur"></option>
+          <option value="Vellore"></option>
+          <option value="Virudhunagar"></option>
+        </datalist>
+      </span>
+
+      <span class="combinedSpan">
+        <h6>Pin code:</h6>
+        <input
+          type="text"
+          name="pinCode"
+          placeholder="Enter pin code"
+          class="long-input"
+        />
+      </span>
+    </div>
+
+    <div class="detail15 form-group full-width">
+      <h6>Contact Number:</h6>
+      <input
+        type="number"
+        name="contactNo"
+        placeholder="Enter Ph number"
+        class="fourColInp"
+      />
+    </div>
+
+    <div class="detail16 form-group full-width">
+      <h6>aadhar linked Number:</h6>
+      <input
+        type="number"
+        name="contactNoWithAadhar"
+        placeholder="Enter Ph number"
+        class="fourColInp"
+      />
+    </div>
+
+    <div class="detail17 form-group full-width">
+      <h6>email:</h6>
+      <input
+        type="text"
+        name="email"
+        placeholder="Enter email"
+        class="fourColInp"
+      />
+    </div>
+
+    <div class="detail18 form-group full-width">
+      <h6>EMIS Number:</h6>
+      <input
+        type="number"
+        name="emis"
+        placeholder="Enter EMIS number"
+        class="fourColInp"
+      />
+    </div>
+
+    <div class="detail19 form-group full-width rounded-bottom">
+      <h6>UMIS Number:</h6>
+      <input
+        type="number"
+        name="umis"
+        placeholder="Enter UMIS number"
+        class="fourColInp"
+      />
+    </div>
+
+    <!-- Parents and guardian details -->
+    <div class="guardian0 form-group spacer"></div>
+    <div class="guardian1 form-group full-width rounded-top">
+      2. Parent / Guardian Details
+    </div>
+
+    <div class="guardian2 form-group full-width">
+      <h6>Name of the Parent:</h6>
+      <input
+        type="text"
+        name="parentName"
+        class="fourColInp"
+        placeholder="Name of Parent"
+      />
+    </div>
+
+    <div class="guardian3 form-group full-width">
+      <h6>Contact Number:</h6>
+      <input
+        type="text"
+        name="parentContact"
+        class="fourColInp"
+        placeholder="Contact number"
+      />
+    </div>
+
+    <div class="guardian4 form-group full-width">
+      <h6>Occupation:</h6>
+      <input
+        type="text"
+        name="parentOccupation"
+        class="fourColInp"
+        placeholder="Occupation"
+      />
+    </div>
+
+    <div class="guardian5 form-group full-width">
+      <h6>Annual Income (Rs):</h6>
+      <input
+        type="text"
+        name="parentIncome"
+        class="fourColInp"
+        placeholder="Annual income"
+      />
+    </div>
+
+    <div class="guardian6 form-group full-width">
+      <h6>Mother Name:</h6>
+      <input
+        type="text"
+        name="MotherName"
+        class="fourColInp"
+        placeholder="Mother name"
+      />
+    </div>
+
+    <div class="guardian7 form-group full-width">
+      <h6>Contact Number:</h6>
+      <input
+        type="text"
+        name="MotherContact"
+        class="fourColInp"
+        placeholder="Mother contact Number"
+      />
+    </div>
+
+    <div class="guardian8 form-group full-width">
+      <h6>Occupation:</h6>
+      <input
+        type="text"
+        name="MotherOccupation"
+        class="fourColInp"
+        placeholder="Mother Occupation"
+      />
+    </div>
+
+    <div class="guardian9 form-group full-width">
+      <h6>Annual Income (Rs):</h6>
+      <input
+        type="text"
+        name="MotherIncome"
+        class="fourColInp"
+        placeholder="Mother annual income"
+      />
+    </div>
+
+    <div class="guardian10 form-group full-width rounded-bottom">
+      <h6>Siblings (S):</h6>
+      <input
+        type="text"
+        name="siblings"
+        class="fourColInp"
+        placeholder="Siblings"
+      />
+    </div>
+
+    <!-- Academic record -->
+    <div class="spacer"></div>
+    <div class="acad1 full-width rounded-top">3. Academic record</div>
+
+    <div class="acad2 full-width">
+      <h6>Qualifying Examination:</h6>
+      <select name="qualifyExam" class="fourColInp">
+        <option value="" disabled selected>Select</option>
+        <option value="Diploma">Diploma</option>
+        <option value="HSC">HSC</option>
+      </select>
+    </div>
+
+    <div class="acad3 schooling">
+      <span class="full-width">
+        <h6>Name of Institution(6th):</h6>
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school6"
+          placeholder="School name (6th grade)"
+        />
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school6Loc"
+          placeholder="Place and District (6th grade)"
+          style="margin-right: 10px"
+        />
+        <select name="school6Type">
+          <option value="" disabled selected>Type of Institute</option>
+          <option value="Government">Government</option>
+          <option value="Government Aided">Government Aided</option>
+          <option value="Private">Private</option>
+        </select>
+      </span>
+      <span class="full-width">
+        <select name="school6Board" style="margin-right: 3.5px">
+          <option value="" selected disabled>Board of study</option>
+          <option value="State Board">State Board</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Vocational">Vocational</option>
+          <option value="IGCSE/CISCE">IGCSE/CISCE</option>
+          <option value="Others">Others</option>
+        </select>
+
+        <select name="school6Medium" style="margin-left: 3.5px">
+          <option value="" disabled selected>Medium of Institution</option>
+          <option value="English">English</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+      </span>
+    </div>
+
+    <div class="acad4 schooling">
+      <span class="full-width">
+        <h6>Name of Institution(7th):</h6>
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school7"
+          placeholder="School name (7th grade)"
+        />
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school7Loc"
+          placeholder="Place and District (7th grade)"
+          style="margin-right: 10px"
+        />
+        <select name="school7Type">
+          <option value="" disabled selected>Type of Institute</option>
+          <option value="Government">Government</option>
+          <option value="Government Aided">Government Aided</option>
+          <option value="Private">Private</option>
+        </select>
+      </span>
+      <span class="full-width">
+        <select name="school7Board" style="margin-right: 3.5px">
+          <option value="" selected disabled>Board of study</option>
+          <option value="State Board">State Board</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Vocational">Vocational</option>
+          <option value="IGCSE/CISCE">IGCSE/CISCE</option>
+          <option value="Others">Others</option>
+        </select>
+
+        <select name="school7Medium" style="margin-left: 3.5px">
+          <option value="" disabled selected>Medium of Institution</option>
+          <option value="English">English</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+      </span>
+    </div>
+
+    <div class="acad5 schooling">
+      <span class="full-width">
+        <h6>Name of Institution(8th):</h6>
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school8"
+          placeholder="School name (8th grade)"
+        />
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school8Loc"
+          placeholder="Place and District (8th grade)"
+          style="margin-right: 10px"
+        />
+        <select name="school8Type">
+          <option value="" disabled selected>Type of Institute</option>
+          <option value="Government">Government</option>
+          <option value="Government Aided">Government Aided</option>
+          <option value="Private">Private</option>
+        </select>
+      </span>
+      <span class="full-width">
+        <select name="school8Board" style="margin-right: 3.5px">
+          <option value="" selected disabled>Board of study</option>
+          <option value="State Board">State Board</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Vocational">Vocational</option>
+          <option value="IGCSE/CISCE">IGCSE/CISCE</option>
+          <option value="Others">Others</option>
+        </select>
+
+        <select name="school8Medium" style="margin-left: 3.5px">
+          <option value="" disabled selected>Medium of Institution</option>
+          <option value="English">English</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+      </span>
+    </div>
+
+    <div class="acad6 schooling">
+      <span class="full-width">
+        <h6>Name of Institution(9th):</h6>
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school9"
+          placeholder="School name (9th grade)"
+        />
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school9Loc"
+          placeholder="Place and District (9th grade)"
+          style="margin-right: 10px"
+        />
+        <select name="school9Type" id="school9Type">
+          <option value="" disabled selected>Type of Institute</option>
+          <option value="Government">Government</option>
+          <option value="Government Aided">Government Aided</option>
+          <option value="Private">Private</option>
+        </select>
+      </span>
+      <span class="full-width">
+        <select name="school9Board" style="margin-right: 3.5px">
+          <option value="" selected disabled>Board of study</option>
+          <option value="State Board">State Board</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Vocational">Vocational</option>
+          <option value="IGCSE/CISCE">IGCSE/CISCE</option>
+          <option value="Others">Others</option>
+        </select>
+
+        <select name="school9Medium" style="margin-left: 3.5px">
+          <option value="" disabled selected>Medium of Institution</option>
+          <option value="English">English</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+      </span>
+    </div>
+
+    <div class="acad7 schooling">
+      <span class="full-width">
+        <h6>Name of Institution(10th):</h6>
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school10"
+          placeholder="School name (10th grade)"
+        />
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school10Loc"
+          placeholder="Place and District (10th grade)"
+          style="margin-right: 10px"
+        />
+        <select name="school10Type" id="school10Type">
+          <option value="" disabled selected>Type of Institute</option>
+          <option value="Government">Government</option>
+          <option value="Government Aided">Government Aided</option>
+          <option value="Private">Private</option>
+        </select>
+      </span>
+      <span class="full-width">
+        <select name="school10Board" style="margin-right: 3.5px">
+          <option value="" selected disabled>Board of study</option>
+          <option value="State Board">State Board</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Vocational">Vocational</option>
+          <option value="IGCSE/CISCE">IGCSE/CISCE</option>
+          <option value="Others">Others</option>
+        </select>
+
+        <select name="school10Medium" style="margin-left: 3.5px">
+          <option value="" disabled selected>Medium of Institution</option>
+          <option value="English">English</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+      </span>
+    </div>
+
+    <div class="acad8 form-group">
+      <h6>SSLC Marks:</h6>
+      <input type="number" name="sslcMark" placeholder="Enter Mark" />
+    </div>
+
+    <div class="acad9 form-group">
+      <h6>SSLC Percentage:</h6>
+      <input type="number" name="sslcPercent" placeholder="Enter Percentage" />
+    </div>
+
+    <div class="acad10 schooling">
+      <span class="full-width">
+        <h6>Name of Institution(11th):</h6>
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school11"
+          placeholder="School name (11th grade)"
+        />
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school11Loc"
+          placeholder="Place and District (11th grade)"
+          style="margin-right: 10px"
+        />
+        <select name="school11Type" id="school11Type">
+          <option value="" disabled selected>Type of Institute</option>
+          <option value="Government">Government</option>
+          <option value="Government Aided">Government Aided</option>
+          <option value="Private">Private</option>
+        </select>
+      </span>
+      <span class="full-width">
+        <select name="school11Board" style="margin-right: 3.5px">
+          <option value="" selected disabled>Board of study</option>
+          <option value="State Board">State Board</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Vocational">Vocational</option>
+          <option value="IGCSE/CISCE">IGCSE/CISCE</option>
+          <option value="Others">Others</option>
+        </select>
+
+        <select name="school11Medium" style="margin-left: 3.5px">
+          <option value="" disabled selected>Medium of Institution</option>
+          <option value="English">English</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+      </span>
+    </div>
+
+    <div class="acad11 schooling">
+      <span class="full-width">
+        <h6>Name of Institution(12th):</h6>
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school12"
+          placeholder="School name (12th grade)"
+        />
+      </span>
+      <span class="full-width">
+        <input
+          type="text"
+          name="school12Loc"
+          placeholder="Place and District (12th grade)"
+          style="margin-right: 10px"
+        />
+        <select name="school11Type" id="school11Type">
+          <option value="" disabled selected>Type of Institute</option>
+          <option value="Government">Government</option>
+          <option value="Government Aided">Government Aided</option>
+          <option value="Private">Private</option>
+        </select>
+      </span>
+      <span class="full-width">
+        <select name="school12Board" style="margin-right: 3.5px">
+          <option value="" selected disabled>Board of study</option>
+          <option value="State Board">State Board</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Vocational">Vocational</option>
+          <option value="IGCSE/CISCE">IGCSE/CISCE</option>
+          <option value="Others">Others</option>
+        </select>
+
+        <select name="school12Medium" style="margin-left: 3.5px">
+          <option value="" disabled selected>Medium of Institution</option>
+          <option value="English">English</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+      </span>
+    </div>
+
+    <div class="acad12 form-group">
+      <h6>HSC register no:</h6>
+      <input type="text" name="hscNo" placeholder="Enter reg number" />
+    </div>
+
+    <div class="acad13 form-group">
+      <h6>Group Code:</h6>
+      <input type="text" name="grpCode" placeholder="Enter group code" />
+    </div>
+
+    <div class="acad14 form-group">
+      <h6>Year Of Passing:</h6>
+      <input type="number" name="yearPass" placeholder="Enter the year" />
+    </div>
+
+    <div class="acad15 form-group">
+      <h6>No Of Attempts:</h6>
+      <input type="number" name="noAttempts" placeholder="Enter Attemps" />
+    </div>
+
+    <div class="acad16 form-group">
+      <h6>HSC Marks:</h6>
+      <input type="number" name="hscMark" placeholder="Enter HSC Marks" />
+    </div>
+
+    <div class="acad17 form-group">
+      <h6>HSC Percentage:</h6>
+      <input type="number" name="hscPercent" placeholder="Enter HSC Percent" />
+    </div>
+    <div class="acad18 full-width rounded-bottom">
+      <h6>Break Of Study (if any):</h6>
+      <input
+        type="text"
+        name="breakStudy"
+        class="fourColInp"
+        placeholder="Enter break of study (if any)"
+      />
+    </div>
+
+    <!-- Mark details -->
+    <div class="spacer"></div>
+    <div class="mark1 full-width rounded-top">
+      4. HSC / Diploma Mark Details:
+    </div>
+    <div class="mark2 full-width">(a) HSC (mark out of 100):</div>
+    <div class="mark3 form-group detailCentered">Subjects:</div>
+    <div class="mark4 centered-input">Marks Obtained:</div>
+    <div class="mark5 centered-input">Percentage (%):</div>
+    <div class="mark6 form-group detailCentered">Maths</div>
+    <div class="mark7 centered-input">
+      <input type="number" name="mathsMark" placeholder="Maths Mark" />
+    </div>
+    <div class="mark8 centered-input">
+      <input type="number" name="mathsPercent" placeholder="Maths Percentage" />
+    </div>
+    <div class="mark9 form-group detailCentered">Physics</div>
+    <div class="mark10 centered-input">
+      <input type="number" name="physicsMark" placeholder="Physics Mark" />
+    </div>
+    <div class="mark11 centered-input">
+      <input
+        type="number"
+        name="physicsPercent"
+        placeholder="Physics Percentage"
+      />
+    </div>
+    <div class="mark12 form-group detailCentered">Chemistry</div>
+    <div class="mark13 centered-input">
+      <input type="number" name="chemMark" placeholder="Chemistry Mark" />
+    </div>
+    <div class="mark14 centered-input">
+      <input
+        type="number"
+        name="chemPercent"
+        placeholder="Chemistry Percentage"
+      />
+    </div>
+    <div class="mark15 form-group detailCentered">Optional Subject</div>
+    <div class="mark16 centered-input">
+      <input type="number" name="optMark" placeholder="Optional Mark" />
+    </div>
+    <div class="mark17 centered-input">
+      <input
+        type="number"
+        name="optPercent"
+        placeholder="Optional Percentage"
+      />
+    </div>
+    <div
+      class="mark18 form-group detailCentered"
+      style="border-bottom-left-radius: 8px"
+    >
+      Total
+    </div>
+    <div class="mark19 centered-input">
+      <input type="number" name="totMark" placeholder="Total Mark" />
+    </div>
+    <div class="mark20 centered-input" style="border-bottom-right-radius: 8px">
+      <input type="number" name="totPercent" placeholder="Total Percentage" />
+    </div>
+    <div class="spacer"></div>
+
+    <!-- Diploma Details -->
+    <div class="diploma1 full-width rounded-top">(b) Diploma:</div>
+    <div class="diploma2 centered-input">Semester</div>
+    <div class="diploma3 centered-input">Maximium Marks</div>
+    <div class="diploma4 centered-input">Marks Obtained</div>
+    <div class="diploma5 centered-input">Percentage</div>
+    <div class="diploma6 centered-input">1 Semester</div>
+    <div class="diploma7 centered-input">
+      <input type="number" name="Sem1Max" />
+    </div>
+    <div class="diploma8 centered-input">
+      <input type="number" name="Sem1Obtain" />
+    </div>
+    <div class="diploma9 centered-input">
+      <input type="number" name="Sem1Percent" />
+    </div>
+    <div class="diploma10 centered-input">2 Semester</div>
+    <div class="diploma11 centered-input">
+      <input type="number" name="Sem2Max" />
+    </div>
+    <div class="diploma12 centered-input">
+      <input type="number" name="Sem2Obtain" />
+    </div>
+    <div class="diploma13 centered-input">
+      <input type="number" name="Sem2Percent" />
+    </div>
+    <div class="diploma14 centered-input">3 Semester</div>
+    <div class="diploma15 centered-input">
+      <input type="number" name="Sem3Max" />
+    </div>
+    <div class="diploma16 centered-input">
+      <input type="number" name="Sem3Obtain" />
+    </div>
+    <div class="diploma17 centered-input">
+      <input type="number" name="Sem3Percent" />
+    </div>
+    <div class="diploma18 centered-input">4 Semester</div>
+    <div class="diploma19 centered-input">
+      <input type="number" name="Sem4Max" />
+    </div>
+    <div class="diploma20 centered-input">
+      <input type="number" name="Sem4Obtain" />
+    </div>
+    <div class="diploma21 centered-input">
+      <input type="number" name="Sem4Percent" />
+    </div>
+    <div class="diploma22 centered-input">5 Semester</div>
+    <div class="diploma23 centered-input">
+      <input type="number" name="Sem5Max" />
+    </div>
+    <div class="diploma24 centered-input">
+      <input type="number" name="Sem5Obtain" />
+    </div>
+    <div class="diploma25 centered-input">
+      <input type="number" name="Sem5Percent" />
+    </div>
+    <div
+      class="diploma26 centered-input"
+      style="border-bottom-left-radius: 8px"
+    >
+      6 Semester
+    </div>
+    <div class="diploma27 centered-input">
+      <input type="number" name="Sem6Max" />
+    </div>
+    <div class="diploma28 centered-input">
+      <input type="number" name="Sem6Obtain" />
+    </div>
+    <div
+      class="diploma29 centered-input"
+      style="border-bottom-right-radius: 8px"
+    >
+      <input type="number" name="Sem6Percent" />
+    </div>
+    <div class="spacer"></div>
+
+    <!-- Awards and Honours -->
+    <div class="awards1 full-width rounded-top">5. Awards / Honours:</div>
+    <div class="awards2 full-width rounded-bottom">
+      <input
+        type="text"
+        name="awards"
+        placeholder="Enter Awards and Honours"
+        style="width: 100%"
+      />
+    </div>
+    <div class="spacer"></div>
+
+    <!-- Extra Curricular Activities -->
+    <div class="extraAct1 full-width rounded-top">
+      6. Extra Curricular Activities:
+    </div>
+    <div class="extraAct2 full-width rounded-bottom">
+      <input
+        type="text"
+        name="extraAct"
+        placeholder="Enter Extra Curricular Activities"
+        style="width: 100%"
+      />
+    </div>
+    <div class="spacer"></div>
+
+    <!-- Scholarship details -->
+    <div class="scholarship full-width rounded-top">
+      7. Scholarship Details:
+    </div>
+    <div class="scholarshipDiv">
+      <div class="innerMain1">
+        <div class="centered-input">Community</div>
+        <div class="centered-input">PMSS</div>
+        <div class="centered-input">Puthumai Pen</div>
+        <div class="centered-input">Tamil Pudhavan</div>
+        <div class="centered-input">First Graduate</div>
+        <div class="centered-input">Beedi</div>
+        <div class="centered-input">
+          <input
+            type="checkbox"
+            name="scholarship[]"
+            value="Community (BC, MBC, BCM, DNC)"
+          />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="PMSS" />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="Puthumai Pen" />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="Tamil Pudhavan" />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="First Graduate" />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="Beedi" />
+        </div>
+      </div>
+      <div class="innerMain2 rounded-bottom">
+        <div class="centered-input">Minority</div>
+        <div class="centered-input">Central Sector</div>
+        <div class="centered-input">Pragadhi</div>
+        <div class="centered-input">
+          Financial <br />
+          Assistance
+        </div>
+        <div class="centered-input">Single Parent</div>
+        <div class="centered-input">Others</div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="Minority" />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="Central Sector" />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="Pragadhi" />
+        </div>
+        <div class="centered-input">
+          <input
+            type="checkbox"
+            name="scholarship[]"
+            value="Financial Assistance"
+          />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="Single Parent" />
+        </div>
+        <div class="centered-input">
+          <input type="checkbox" name="scholarship[]" value="Others" />
+        </div>
+      </div>
+    </div>
+
+    <div class="certificateNo1 full-width">
+      <h6>Community Certifciate Number:</h6>
+      <input
+        type="text"
+        name="communityNo"
+        placeholder="Enter the Community Certificate Number"
+        class="fourColInp"
+      />
+    </div>
+    <div class="certificateNo2 full-width">
+      <h6>Income Certificate Number:</h6>
+      <input
+        type="text"
+        name="incomeNo"
+        placeholder="Enter the Income Certificate Number"
+        class="fourColInp"
+      />
+    </div>
+    <div class="certificateNo3 full-width rounded-bottom">
+      <h6>FG Certificate No:</h6>
+      <input
+        type="text"
+        name="communityNo"
+        placeholder="Enter the FG Certificate Number"
+        class="fourColInp"
+      />
+    </div>
+    <div class="spacer"></div>
+
+    <!-- Hostel details -->
+    <div class="hostel1 full-width rounded-top">8.Hostel Details:</div>
+    <div class="hostel2 full-width rounded-bottom">
+      <h6>Hostel Required:</h6>
+      <select name="hostelDetail" class="fourColInp">
+        <option value="" disabled selected>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+    <div class="spacer"></div>
+
+    <!-- Transportation details -->
+    <div class="transport0 full-width rounded-top">9. Transport Details:</div>
+    <div class="transportDiv rounded-bottom">
+      <div class="transportInner1 rounded-bottom">
+        <h6>Mode of Transport:</h6>
+        <select name="modeOfTransport" class="transportMode fourColInp">
+          <option value="" selected disabled>Select</option>
+          <option value="Own transport">Own Transport</option>
+          <option value="College transport">College Transport</option>
+        </select>
+      </div>
+      <div class="transportInner2">
+        <h6>Type of Vehicle:</h6>
+        <select name="vehicleType" class="vehicleType fourColInp">
+          <option value="" selected disabled>Select</option>
+          <option value="Bicycle">Bicycle</option>
+          <option value="Motor cycle">Motor Cycle</option>
+        </select>
+      </div>
+      <div class="transportInner3">
+        <input
+          type="text"
+          name="licenseNo"
+          placeholder="Enter license Number"
+        />
+        <input type="text" name="validDate" placeholder="Enter Validity Date" />
+      </div>
+
+      <!-- The College bus route details -->
+      <div class="transportInner4">
+        <input
+          type="text"
+          name="boardingPoint"
+          placeholder="Enter Boarding Point"
+        />
+        <input type="text" name="busNo" placeholder="Enter Bus Number" />
+      </div>
+    </div>
+    <div class="spacer"></div>
+
+    <!-- Bank account details -->
+    <div class="bankdetail1 full-width rounded-top">
+      10. Bank Account Details
+    </div>
+    <div class="bankdetail2 full-width">
+      <h6>Name of the Bank:</h6>
+      <input
+        type="text"
+        name="bankName"
+        placeholder="Enter Bank Name"
+        class="fourColInp"
+      />
+    </div>
+    <div class="bankdetail3 full-width">
+      <h6>Branch:</h6>
+      <input
+        type="text"
+        name="bankBranch"
+        placeholder="Enter Branch"
+        class="fourColInp"
+      />
+    </div>
+    <div class="bankdetail4 full-width">
+      <h6>Account Number:</h6>
+      <input
+        type="number"
+        name="accNo"
+        placeholder="Enter Account Number"
+        class="fourColInp"
+      />
+    </div>
+    <div class="bankdetail5 full-width">
+      <h6>IFSC Code:</h6>
+      <input
+        type="number"
+        name="ifscCode"
+        placeholder="Enter IFSC Code"
+        class="fourColInp"
+      />
+    </div>
+    <div class="bankdetail6 full-width">
+      <h6>MICR Code:</h6>
+      <input
+        type="text"
+        name="micrCode"
+        placeholder="Enter MICR Code"
+        class="fourColInp"
+      />
+    </div>
+    <div class="bankdetail7 full-width">
+      <h6>Aadhaar Number Seeded with Bank Account:</h6>
+      <select name="seededBank">
+        <option value="" selected disabled>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+    <div class="bankdetail8 full-width">
+      <h6>Is Name Same in Every Certificate:</h6>
+      <select name="allSameName">
+        <option value="" selected disabled>Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+    <div class="btn full-width rounded-bottom">
+      <button class="submitBtn">Submit</button>
+    </div>
+    <div class="spacer"></div>
+  </form>
+</main>
+
+    </div>
+    <script src="/javaScript/<%= jsFile %>.js"></script>
+  </body>
+</html>

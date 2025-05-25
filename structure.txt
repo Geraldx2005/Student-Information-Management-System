@@ -1,0 +1,12 @@
+/college-db-management
+
+|- /public          #Static files (css, js, images).
+|- /views           #Templating engine views (ejs. pug, etc).
+|- /routes          #Route handlers.
+|- /models          #Mongooose models.
+|- /controllers     #Buisness logic for routes.
+|- /config          #Consfiguration (db connecion, environment variables).
+|- /package.json    #Dependencies & scripts.
+|- /server.js       #Main entry point.
+|- /.env            #Environment variables.
+|- /.gitignore      #Ignore node_modules, .env, etc from pushing to github

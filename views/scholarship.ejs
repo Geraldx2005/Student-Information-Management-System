@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/<%= cssFile %>.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Student Information Management System</h1>
+
+      <div class="download-btns">
+        <div class="download-selector" id="downloadSelector">
+          <button class="download-selector__trigger">
+            <span>
+              <i class="fa-solid fa-file-arrow-down"></i>
+              <span class="download-typo">Download</span>
+            </span>
+              <i class="fas fa-chevron-down download-selector__trigger-icon"></i>
+          </button>
+          <div class="download-selector__menu">
+              <span class="download-selector__option" id="downloadPDF">
+                  <i class="fas fa-file-pdf download-selector__option-icon"></i>
+                  <span>PDF</span>
+              </span>
+              <span class="download-selector__option" id="downloadXLS">
+                  <i class="fas fa-file-excel download-selector__option-icon"></i>
+                  <span>Excel</span>
+              </span>
+          </div>
+      </div>
+        <!-- <button id="downloadXLS" class="btn">Download XLS</button>
+        <button id="downloadPDF" class="btn">Download PDF</button> -->
+        <button id="logout" class="logOutBtn" title="Log out"><i class="fa-solid fa-door-open"></i></button>
+      </div>
+    </header>
+
+    <div class="app-container">
+      <!-- Navigation Panel -->
+      <nav class="navigation-panel collapsed" id="navPanel">
+
+        <div class="nav-menu">
+          <span class="nav-item nav-header nav-title">
+            <div>
+              <i class="fa-solid fa-bars"></i>
+              <span class="nav-item-details">Navigation</span>
+            </div>
+          </span>
+          <a href="/studentslist" class="nav-item">
+            <div>
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span class="nav-item-details">Search Students</span>
+            </div>
+          </a>
+          <a href="/form" class="nav-item">
+            <div>
+              <i class="fa-solid fa-plus"></i>
+              <span class="nav-item-details">Add Student</span>
+            </div>
+          </a>
+          <a href="/scholarship" class="nav-item active">
+            <div>
+              <i class="fa-brands fa-google-scholar"></i>
+              <span class="nav-item-details">Scholarship</span>
+            </div>
+          </a>
+          <a href="/transport" class="nav-item">
+            <div>
+              <i class="fa-solid fa-bus-simple"></i>
+              <span class="nav-item-details">Transport</span>
+            </div>
+          </a>
+          <a href="/recycle" class="nav-item">
+            <div>
+              <i class="fa-solid fa-trash"></i>
+              <span class="nav-item-details">Recycle bin</span>
+            </div>
+          </a>
+          <a href="#" class="nav-item">
+            <div>
+              <i class="fa-regular fa-clipboard"></i>
+              <span class="nav-item-details">Records</span>
+            </div>
+          </a>
+          <a href="#" class="nav-item">
+            <div>
+              <i class="fa-solid fa-gear"></i>
+              <span class="nav-item-details">Settings</span>
+            </div>
+          </a>
+          <a href="#" class="nav-item">
+            <div>
+              <i class="fa-solid fa-clipboard"></i>
+              <span class="nav-item-details">Reports</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="nav-footer">
+          <div class="user-profile">
+            <div class="user-avatar">AD</div>
+            <div class="user-info">
+              <div class="user-name">Admin User</div>
+              <div class="user-role">Administrator</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content" id="scrollArea">
+        <div class="search-filters">
+          <!-- the filters -->
+          <form method="get" action="http://localhost:3000/scholarship/filter">
+            <div class="filters-container">
+              <div class="filter-group">
+                <select class="filter-select" id="departmentFilter" name="department">
+                  <option value="" selected disabled hidden> Choose Department </option>
+                  <option value="Computer Science" <%= data.department == 'Computer Science' ? 'selected' : '' %>> Computer Science </option>
+                  <option value="Information Technology" <%= data.department == 'Information Technology' ? 'selected' : '' %>> Information Technology </option>
+                  <option value="Artificial Intelligence" <%= data.department == 'Artificial Intelligence' ? 'selected' : '' %>> Artificial Intelligence </option>
+                  <option value="Electronics And Communication" <%= data.department == 'Electronics And Communication' ? 'selected' : '' %>> Electronics And Communication </option>
+                  <option value="Mechanical" <%= data.department == 'Mechanical' ? 'selected' : '' %>>Mechanical</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <select class="filter-select" id="batchFilter" name="batch">
+                  <option value="" disabled selected hidden>
+                    Choose batch
+                  </option>
+                  <option value="2018" <%= data.batch == '2018' ? 'selected' : '' %>>2018</option>
+                  <option value="2019" <%= data.batch == '2019' ? 'selected' : '' %>>2019</option>
+                  <option value="2020" <%= data.batch == '2020' ? 'selected' : '' %>>2020</option>
+                  <option value="2021" <%= data.batch == '2021' ? 'selected' : '' %>>2021</option>
+                  <option value="2022" <%= data.batch == '2022' ? 'selected' : '' %>>2022</option>
+                  <option value="2023" <%= data.batch == '2023' ? 'selected' : '' %>>2023</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <select class="filter-select" id="batchFilter" name="community">
+                  <option value="" disabled selected hidden> Choose Community </option>
+                  <option value="OC" <%= data.community == 'OC' ? 'selected' : '' %>>OC</option>
+                  <option value="BC" <%= data.community == 'BC' ? 'selected' : '' %>>BC</option>
+                  <option value="BCM" <%= data.community == 'BCM' ? 'selected' : '' %>>BCM</option>
+                  <option value="MBC" <%= data.community == 'MBC' ? 'selected' : '' %>>MBC</option>
+                  <option value="DNC" <%= data.community == 'DNC' ? 'selected' : '' %>>DNC</option>
+                  <option value="SC" <%= data.community == 'SC' ? 'selected' : '' %>>SC</option>
+                  <option value="SCA" <%= data.community == 'SCA' ? 'selected' : '' %>>SCA</option>
+                  <option value="SCC" <%= data.community == 'SCC' ? 'selected' : '' %>>SCC</option>
+                  <option value="ST" <%= data.community == 'ST' ? 'selected' : '' %>>ST</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <select class="filter-select" id="batchFilter" name="scholarship">
+                  <option value="" disabled selected hidden> Choose Scholarship </option>
+                  <option value="Community" <%= data.scholarship == 'Community' ? 'selected' : '' %>>Community</option>
+                  <option value="PMSS" <%= data.scholarship == 'PMSS' ? 'selected' : '' %>>PMSS</option>
+                  <option value="Puthumai Pen" <%= data.scholarship == 'Puthumai Pen' ? 'selected' : '' %>>Puthumai Pen</option>
+                  <option value="Tamil Pudhavan" <%= data.scholarship == 'Tamil Pudhavan' ? 'selected' : '' %>>Tamil Pudhavan</option>
+                  <option value="First Graduate" <%= data.scholarship == 'First Graduate' ? 'selected' : '' %>>First Graduate</option>
+                  <option value="Beedi" <%= data.scholarship == 'Beedi' ? 'selected' : '' %>>Beedi</option>
+                  <option value="Minority" <%= data.scholarship == 'Minority' ? 'selected' : '' %>>Minority</option>
+                  <option value="Central Sector" <%= data.scholarship == 'Central Sector' ? 'selected' : '' %>>Central Sector</option>
+                  <option value="Pragadhi" <%= data.scholarship == 'Pragadhi' ? 'selected' : '' %>>Pragadhi</option>
+                  <option value="Financial Assistance" <%= data.scholarship == 'Financial Assistance' ? 'selected' : '' %>>Financial Assistance</option>
+                  <option value="Single Parent" <%= data.scholarship == 'Single Parent' ? 'selected' : '' %>>Single Parent</option>
+                  <option value="Others" <%= data.scholarship == 'Others' ? 'selected' : '' %>>Others</option>
+                </select>
+              </div>
+
+              <button class="filter-btn" id="apply-fltr">Apply Filter</button>
+              <button type="button" class="filter-btn" id="clear-fltr" onclick="window.location.href = '/scholarship'">Clear Filter</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="data-table-container">
+          <div class="table-header">
+            <div>Roll No.</div>
+            <div>Reg. No.</div>
+            <div>Batch</div>
+            <div>Name</div>
+            <div>Scholarship</div>
+          </div>
+
+          <div id="contentArea">
+            <div class="loadingSpinner">Loading Data...</div>
+          </div>
+        </div>
+      </main>
+      <!-- The delete pop-up which appears when the delete button is clicked -->
+      <div class="delete-popup">
+        <div class="delete-msg">
+          <h1>
+            This item will be moved to the Recycle Bin and can be restored later. Continue?
+          </h1>
+          <div class="delete-btns">
+            <button onclick="removePopup(); cancelDelete()">Cancel</button>
+            <button onclick="removePopup(); confirmDelete()">Move to Bin</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- in your EJS template (before your script.js) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    
+    <script src="/javaScript/vendor/clusterize.min.js"></script>
+    <script> window.studentList = <%- JSON.stringify(studentNames) %>; </script>
+    <script src="/javaScript/scholarship.js" defer></script>
+  </body>
+</html>

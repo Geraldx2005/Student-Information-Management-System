@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Details | JACSICE</title>
+    <link rel="stylesheet" href="/css/studentDetails.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Jayaraj Annapackiam CSI College of Engineering</h1>
+        <button class="no-print" onclick="window.print()">Download PDF</button>
+      </header>
+
+      <div class="student-profile">
+        <!-- Student Badge -->
+        <div class="student-badge">
+          <div class="student-id"><%= student.student_id %></div>
+          <div class="student-name"><%= student.student_name %></div>
+          <div class="department-tag"><%= student.department %></div>
+
+          <div class="basic-info">
+            <div class="info-item">
+              <div class="info-label">Batch</div>
+              <div class="info-value"><%= student.batch %></div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Roll No</div>
+              <div class="info-value"><%= student.roll_number %></div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Mode of Admission</div>
+              <div class="info-value"><%= student.admission_mode %></div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Date of Admission</div>
+              <div class="info-value"><%= student.admission_date %></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personal Details -->
+        <div class="detail-card">
+          <h3 class="section-title">Personal Information</h3>
+          <div class="details-grid">
+            <div class="detail-item">
+              <div class="detail-label">Date of Birth</div>
+              <div class="detail-value"><%= student.dob %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Gender</div>
+              <div class="detail-value"><%= student.gender %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Blood Group</div>
+              <div class="detail-value"><%= student.blood_group %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Community</div>
+              <div class="detail-value"><%= student.community %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Religion</div>
+              <div class="detail-value"><%= student.religion %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Caste</div>
+              <div class="detail-value"><%= student.caste %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Nationality</div>
+              <div class="detail-value"><%= student.nationality %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Mother Tongue</div>
+              <div class="detail-value"><%= student.mother_tongue %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Aadhar Number</div>
+              <div class="detail-value"><%= student.aadhar_no %></div>
+            </div>
+          </div>
+
+          <div class="detail-item" style="margin-top: 20px">
+            <div class="detail-label">Address</div>
+            <div class="detail-value"><%= student.address %></div>
+          </div>
+
+          <div class="details-grid" style="margin-top: 20px">
+            <div class="detail-item">
+              <div class="detail-label">Contact Number</div>
+              <div class="detail-value">+91 <%= student.phone_no %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Email</div>
+              <div class="detail-value"><%= student.email %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">EMIS Number</div>
+              <div class="detail-value"><%= student.emis %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">UMIS Number</div>
+              <div class="detail-value"><%= student.umis %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parent/Guardian Details -->
+      <div class="academic-section">
+        <div class="detail-card">
+          <h3 class="section-title">Parent / Guardian Details</h3>
+          <div class="details-grid">
+            <div class="detail-item">
+              <div class="detail-label">Father's Name</div>
+              <div class="detail-value"><%= student.father_name %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Father's Contact</div>
+              <div class="detail-value">+91 <%= student.father_contact %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Father's Occupation</div>
+              <div class="detail-value"><%= student.father_occupation %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Father's Income</div>
+              <div class="detail-value"><%= student.father_income %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Mother's Name</div>
+              <div class="detail-value"><%= student.mother_name %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Mother's Contact</div>
+              <div class="detail-value">+91 <%= student.mother_contact %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Mother's Occupation</div>
+              <div class="detail-value"><%= student.mother_income %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Mother's Income</div>
+              <div class="detail-value"><%= student.mother_income %></div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Siblings</div>
+              <div class="detail-value"><%= student.siblings %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Records -->
+      <div class="academic-section">
+        <h3 class="section-title">Academic Records</h3>
+        <div class="records-container">
+          <div class="records-card">
+            <h4 class="sub-section-title">School Education</h4>
+            <table class="records-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>School</th>
+                  <th>Board</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>6th</td>
+                  <td>ABC Matric School</td>
+                  <td>State Board</td>
+                  <td>Private</td>
+                </tr>
+                <tr>
+                  <td>7th</td>
+                  <td>ABC Matric School</td>
+                  <td>State Board</td>
+                  <td>Private</td>
+                </tr>
+                <tr>
+                  <td>8th</td>
+                  <td>ABC Matric School</td>
+                  <td>State Board</td>
+                  <td>Private</td>
+                </tr>
+                <tr>
+                  <td>9th</td>
+                  <td>ABC Matric School</td>
+                  <td>State Board</td>
+                  <td>Private</td>
+                </tr>
+                <tr>
+                  <td>10th</td>
+                  <td>ABC Matric School</td>
+                  <td>State Board</td>
+                  <td>Private</td>
+                </tr>
+                <tr>
+                  <td>11th</td>
+                  <td>XYZ Higher Sec School</td>
+                  <td>State Board</td>
+                  <td>Government</td>
+                </tr>
+                <tr>
+                  <td>12th</td>
+                  <td>XYZ Higher Sec School</td>
+                  <td>State Board</td>
+                  <td>Government</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="records-card">
+            <h4 class="sub-section-title">Exam Performance</h4>
+            <table class="records-table">
+              <thead>
+                <tr>
+                  <th>Exam</th>
+                  <th>Marks</th>
+                  <th>Percentage</th>
+                  <th>Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SSLC</td>
+                  <td>480/500</td>
+                  <td>96%</td>
+                  <td>2019</td>
+                </tr>
+                <tr>
+                  <td>HSC</td>
+                  <td>1125/1200</td>
+                  <td>93.75%</td>
+                  <td>2021</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- HSC Mark Details -->
+      <div class="academic-section">
+        <div class="detail-card">
+          <h3 class="section-title">HSC Mark Details</h3>
+          <table class="records-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Marks Obtained</th>
+                <th>Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mathematics</td>
+                <td>195/200</td>
+                <td>97.5%</td>
+              </tr>
+              <tr>
+                <td>Physics</td>
+                <td>190/200</td>
+                <td>95%</td>
+              </tr>
+              <tr>
+                <td>Chemistry</td>
+                <td>192/200</td>
+                <td>96%</td>
+              </tr>
+              <tr>
+                <td>Optional (Computer Science)</td>
+                <td>188/200</td>
+                <td>94%</td>
+              </tr>
+              <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>765/800</strong></td>
+                <td><strong>95.6%</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Current Semester -->
+      <div class="academic-section">
+        <div class="detail-card">
+          <h3 class="section-title">Current Semester Details</h3>
+          <table class="records-table">
+            <thead>
+              <tr>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
+                <th>Faculty</th>
+                <th>Credits</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CS501</td>
+                <td>Advanced Algorithms</td>
+                <td>Dr. Smith</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>CS502</td>
+                <td>Machine Learning</td>
+                <td>Dr. Johnson</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>CS503</td>
+                <td>Cloud Computing</td>
+                <td>Prof. Williams</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>CS504</td>
+                <td>Data Science</td>
+                <td>Dr. Brown</td>
+                <td>4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Extracurricular Activities -->
+      <div class="academic-section">
+        <div class="records-container">
+          <div class="records-card">
+            <h3 class="section-title">Awards & Honors</h3>
+            <div class="detail-item">
+              <div class="detail-value">
+                <ul style="padding-left: 20px">
+                  <li>Hackathon Winner 2022</li>
+                  <li>Best Paper Award - National Conference 2023</li>
+                  <li>College Chess Champion 2022</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="records-card">
+            <h3 class="section-title">Extracurricular Activities</h3>
+            <div class="detail-item">
+              <div class="detail-value">
+                <ul style="padding-left: 20px">
+                  <li>Coding Club Member</li>
+                  <li>Literary Club Secretary</li>
+                  <li>College Cricket Team</li>
+                  <li>NSS Volunteer</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scholarship Details -->
+      <div class="academic-section">
+        <div class="detail-card">
+          <h3 class="section-title">Scholarship Details</h3>
+          <div class="scholarship-grid">
+            <div class="scholarship-item active-scholarship">
+              Tamil Pudhavan
+            </div>
+            <div class="scholarship-item active-scholarship">
+              First Graduate
+            </div>
+            <div class="scholarship-item">Community (BC)</div>
+            <div class="scholarship-item">Puthumai Pen</div>
+            <div class="scholarship-item">PMSS</div>
+            <div class="scholarship-item">Minority</div>
+          </div>
+
+          <div class="details-grid" style="margin-top: 20px">
+            <div class="detail-item">
+              <div class="detail-label">Community Certificate No</div>
+              <div class="detail-value">TN/BC/2020/123456</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Income Certificate No</div>
+              <div class="detail-value">TN/INC/2020/789012</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">FG Certificate No</div>
+              <div class="detail-value">TN/FG/2021/345678</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hostel & Transport -->
+      <div class="academic-section">
+        <div class="records-container">
+          <div class="records-card">
+            <h3 class="section-title">Hostel Details</h3>
+            <div class="detail-item">
+              <div class="detail-label">Hostel Required</div>
+              <div class="detail-value">Yes</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Hostel Block</div>
+              <div class="detail-value">B Block</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Room Number</div>
+              <div class="detail-value">B-205</div>
+            </div>
+          </div>
+
+          <div class="records-card">
+            <h3 class="section-title">Transport Details</h3>
+            <div class="detail-item">
+              <div class="detail-label">Mode of Transport</div>
+              <div class="detail-value">College Transport</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Boarding Point</div>
+              <div class="detail-value">Nagercoil Bus Stand</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Bus Number</div>
+              <div class="detail-value">TN-74-AB-1234</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bank Details -->
+      <div class="academic-section">
+        <div class="detail-card">
+          <h3 class="section-title">Bank Account Details</h3>
+          <div class="details-grid">
+            <div class="detail-item">
+              <div class="detail-label">Bank Name</div>
+              <div class="detail-value">State Bank of India</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Branch</div>
+              <div class="detail-value">Nagercoil Main Branch</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Account Number</div>
+              <div class="detail-value">1234567890123</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">IFSC Code</div>
+              <div class="detail-value">SBIN0001234</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">MICR Code</div>
+              <div class="detail-value">600123456</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Aadhar Linked</div>
+              <div class="detail-value">Yes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        © Jayaraj Annapackiam CSI College of Engineering - margoschis nagar,
+        nazareth -628617
+      </div>
+    </div>
+  </body>
+</html>
