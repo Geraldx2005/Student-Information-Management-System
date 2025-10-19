@@ -2,6 +2,7 @@ const navPanel = document.getElementById("navPanel");
 const navHeader = document.querySelector(".nav-header");
 const deleteIcon = document.querySelector(".trash");
 const deletePopup = document.querySelector(".delete-popup");
+const logoutPopup = document.querySelector(".logout-popup");
 const tableBody = document.querySelector(".table-body");
 const downloadSelector = document.getElementById('downloadSelector');
 const triggerBtn = downloadSelector.querySelector('.download-selector__trigger');
@@ -42,6 +43,34 @@ function showDeletepopup(event) {
   event.stopPropagation();
   deletePopup.classList.toggle("show");
 }
+
+// Toggles the logout popup when clicking the logout icon.
+function showLogoutpopup(event) {
+  event.stopPropagation();
+  logoutPopup.classList.toggle("show");
+}
+
+// Hides the delete popup when clicking outside of it.
+logoutPopup.addEventListener("click", (event) => {
+  if (event.target == logoutPopup) {
+    logoutPopup.classList.remove("show");
+  }
+});
+
+// Removes the logout popup when clicking the conformation button.
+function removeLogoutPopup() {
+  logoutPopup.classList.remove("show");
+}
+
+// Triggers the edit page when clicking the edit icon.
+function showEditPage(event, studentId) {
+  event.stopPropagation(); // prevents parent click
+  console.log("edit clicked:", studentId);
+  
+  // Open the edit page in a new tab
+  window.location.href = `/form/edit/${studentId}`;
+}
+
 
 // Hides the delete popup when clicking outside of it.
 deletePopup.addEventListener("click", (event) => {
@@ -89,13 +118,15 @@ function confirmDelete() {
         const updatedRows = window.__ITEMS__.map((s) => {
           return `
         <div class="table-row" id="${s._id}" onclick="window.open('/studentsliat/student/${s._id}', '_blank')">
-      <div class="table-cell">${s.roll_number}</div>
-      <div class="table-cell">${s.student_id}</div>
+      <div class="table-cell">${s.rollNumber}</div>
+      <div class="table-cell">${s.studentId}</div>
       <div class="table-cell">${s.batch}</div>
-      <div class="table-cell">${s.student_name}</div>
+      <div class="table-cell">${s.name}</div>
       <div class="table-cell">${s.department}</div>
       <div class="table-cell action-buttons">
-        <button><i class="fa-solid fa-pen-to-square"></i></button>
+        <button class="edit" onclick="showEditPage(event, '${s._id}');">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>
         <button class="trash" onclick="showDeletepopup(event); saveDeleteId('${s._id}');">
           <i class="fa-solid fa-trash"></i>
         </button>
@@ -145,13 +176,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const studentRows = students.map(
       (s) => `
         <div class="table-row" id="${s._id}" onclick="window.open('/studentslist/student/${s._id}', '_blank')">
-      <div class="table-cell">${s.roll_number}</div>
-      <div class="table-cell">${s.student_id}</div>
+      <div class="table-cell">${s.rollNumber}</div>
+      <div class="table-cell">${s.studentId}</div>
       <div class="table-cell">${s.batch}</div>
-      <div class="table-cell">${s.student_name}</div>
+      <div class="table-cell">${s.name}</div>
       <div class="table-cell">${s.department}</div>
       <div class="table-cell action-buttons">
-        <button><i class="fa-solid fa-pen-to-square"></i></button>
+        <button class="edit" onclick="showEditPage(event, '${s._id}');">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </button>        
         <button class="trash" onclick="showDeletepopup(event); saveDeleteId('${s._id}');">
           <i class="fa-solid fa-trash"></i>
         </button>
@@ -234,10 +267,10 @@ document.getElementById("downloadPDF").addEventListener("click", async (e) => {
 
     const students = window.__ITEMS__;
     const rows = students.map((s) => [
-      s.roll_number,
-      s.student_id,
+      s.rollNumber,
+      s.studentId,
       s.batch,
-      s.student_name,
+      s.name,
       s.department,
     ]);
 
@@ -345,7 +378,6 @@ document.getElementById("downloadXLS").addEventListener("click", async () => {
   }
 });
 
-// Logout route.
 document.getElementById('logout').addEventListener('click', async () => {
   const res = await fetch('/logout', {
     method: 'POST',
@@ -353,7 +385,6 @@ document.getElementById('logout').addEventListener('click', async () => {
   });
 
   if (res.ok) {
-    // Optional: redirect to login page
     window.location.href = '/login';
   } else {
     alert('Logout failed');

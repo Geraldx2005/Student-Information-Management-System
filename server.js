@@ -4,12 +4,14 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import cors from "cors";
 import methodOverride from "method-override";
+import cookieParser from "cookie-parser";
+import jwt from 'jsonwebtoken';
+import session from "express-session";
+import flash from "connect-flash";
 import connectDB from "./config/db.js";
 import { form_route, students_list_route, scholarship_route, transport_route, recycle_route } from "./routes/index.js";
 import { generateToken, generateRefreshToken, verifyRefreshToken } from "./utils/jwt.js";
 import ExpressError from "./utils/ExpressError.js";
-import cookieParser from "cookie-parser";
-import jwt from 'jsonwebtoken';
 const app = express();
 const port = 3000;
 dotenv.config();
@@ -23,12 +25,28 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 
+// Middleware for sessions (required for flash)
+app.use(session({
+  secret: "yoursecretkey",
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Initialize flash
+app.use(flash());
+
+// Make flash messages available in all views
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
+
 // Middleware to set cache control headers, This is to prevent caching of the login.
 app.use((req, res, next) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   next();
 });
-
 
 // Convert the module URL to a file path ---->
 const file_name = fileURLToPath(import.meta.url);
@@ -75,11 +93,6 @@ app.post('/refresh-token', (req, res) => {
     const now = Math.floor(Date.now() / 1000);
     const timeLeft = decoded.exp - now;
 
-    // if (timeLeft > 120) {
-    //   console.log(`Access token is still valid, Time left  ${timeleft} seconds`);
-    //   return res.json({ message: 'Access token still valid', timeLeft });
-    // }
-
     const user = verifyRefreshToken(refreshToken);
     const { exp, iat, ...safeUser } = user;
     const newAccessToken = generateToken(safeUser);
@@ -92,13 +105,15 @@ app.post('/refresh-token', (req, res) => {
   }
 });
 
-
-// The logout route which clears the cookie.
+// Logout route
 app.post('/logout', (req, res) => {
+  // Clear the cookie
   res.clearCookie('token');
-  res.status(200).json({ message: 'Logged out successfully' });
+  // Optionally clear session flash if you want
+  req.flash("success", "Logged out successfully");
+  // Send success status (frontend handles redirect)
+  res.sendStatus(200);
 });
-
 
 // Use the form route for handling routes starting with /form
 app.use("/form", form_route);

@@ -39,7 +39,7 @@
       </div>
         <!-- <button id="downloadXLS" class="btn">Download XLS</button>
         <button id="downloadPDF" class="btn">Download PDF</button> -->
-        <button id="logout" class="logOutBtn" title="Log out"><i class="fa-solid fa-door-open"></i></button>
+        <button class="logOutBtn" onclick="showLogoutpopup(event)" title="Log out"><i class="fa-solid fa-door-open"></i></button>
       </div>
     </header>
 
@@ -135,31 +135,20 @@
               <div class="filter-group">
                 <select class="filter-select" id="batchFilter" name="batch">
                   <option value="" disabled selected hidden>Choose batch</option>
-                  <option value="2018" <%= data.batch == '2018' ? 'selected' : '' %>>2018</option>
-                  <option value="2019" <%= data.batch == '2019' ? 'selected' : '' %>>2019</option>
-                  <option value="2020" <%= data.batch == '2020' ? 'selected' : '' %>>2020</option>
-                  <option value="2021" <%= data.batch == '2021' ? 'selected' : '' %>>2021</option>
                   <option value="2022" <%= data.batch == '2022' ? 'selected' : '' %>>2022</option>
                   <option value="2023" <%= data.batch == '2023' ? 'selected' : '' %>>2023</option>
+                  <option value="2024" <%= data.batch == '2024' ? 'selected' : '' %>>2024</option>
+                  <option value="2025" <%= data.batch == '2025' ? 'selected' : '' %>>2025</option>
                 </select>
               </div>
 
               <div class="filter-group">
                 <select class="filter-select" id="transportFilter" name="transport">
                   <option value="" disabled selected hidden>Choose Transport</option>
-                  <option value="E1" <%= data.transport == 'E1' ? 'selected' : '' %>>E1</option>
-                  <option value="E2" <%= data.transport == 'E2' ? 'selected' : '' %>>E2</option>
-                  <option value="E3" <%= data.transport == 'E3' ? 'selected' : '' %>>E3</option>
-                  <option value="E4" <%= data.transport == 'E4' ? 'selected' : '' %>>E4</option>
-                  <option value="E5" <%= data.transport == 'E5' ? 'selected' : '' %>>E5</option>
-                  <option value="E6" <%= data.transport == 'E6' ? 'selected' : '' %>>E6</option>
-                  <option value="E7" <%= data.transport == 'E7' ? 'selected' : '' %>>E7</option>
-                  <option value="E8" <%= data.transport == 'E8' ? 'selected' : '' %>>E8</option>
-                  <option value="E9" <%= data.transport == 'E9' ? 'selected' : '' %>>E9</option>
-                  <option value="E10" <%= data.transport == 'E10' ? 'selected' : '' %>>E10</option>
-                  <option value="E11" <%= data.transport == 'E11' ? 'selected' : '' %>>E11</option>
-                  <option value="E12" <%= data.transport == 'E12' ? 'selected' : '' %>>E12</option>
-                  <option value="E13" <%= data.transport == 'E13' ? 'selected' : '' %>>E13</option>
+                  <option value="Bus" <%= data.transport == 'Bus' ? 'selected' : '' %>>Bus</option>
+                  <option value="Train" <%= data.transport == 'Train' ? 'selected' : '' %>>Train</option>
+                  <option value="Two Wheeler" <%= data.transport == 'Two Wheeler' ? 'selected' : '' %>>Two Wheeler</option>
+                  <option value="Four Wheeler" <%= data.transport == 'Four Wheeler' ? 'selected' : '' %>>Four Wheeler</option>
                 </select>
               </div>
 
@@ -196,6 +185,19 @@
         </div>
       </div>
     </div>
+
+      <!-- The logout pop-up which appears when the logout button is clicked -->
+      <div class="logout-popup">
+        <div class="logout-msg">
+          <h1>
+            Are you sure you want to log out?
+          </h1>
+          <div class="logout-btns">
+            <button onclick="removeLogoutPopup();">Cancel</button>
+            <button id="logout" onclick="removeLogoutPopup();">Log Out</button>
+          </div>
+        </div>
+      </div>     
 
     <!-- in your EJS template (before your script.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

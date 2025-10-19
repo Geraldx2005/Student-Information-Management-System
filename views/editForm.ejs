@@ -13,20 +13,14 @@
     />
     <link rel="stylesheet" href="/css/<%= cssFile %>.css" />
     <link rel="stylesheet" href="/css/studentsList.css" />
-    <link rel="stylesheet" href="/css/toast.css" />
   </head>
   <body>
-
     <header class="header">
       <h1>Student Information Management System</h1>
-
-      <div class="download-btns">
-        <button title="Log out" onclick="showLogoutpopup(event)" class="logOutBtn" ><i class="fa-solid fa-door-open"></i></button>
-      </div>
     </header>
     <div class="app-container">
       <!-- Navigation Panel -->
-      <nav class="navigation-panel collapsed" id="navPanel">
+      <!-- <nav class="navigation-panel collapsed" id="navPanel">
 
         <div class="nav-menu">
           <span class="nav-bar nav-header nav-title">
@@ -94,154 +88,155 @@
             </div>
           </div>
         </div>
-      </nav>
+      </nav> -->
 
       <!-- Main Content -->
       <main class="main-content">
-        <form method="post" action="/form/submit">
+        <form method="post" action="/form/edit/<%= student._id %>?_method=PUT" >
 
           <!-- The Appliaction form -->
-          <div class="detail0 heading rounded-top">Application form</div>
+          <div class="detail0 heading rounded-top">Application form (Edit)</div>
 
           <!-- Personal details section -->
           <div class="full-width">Student Details</div>
 
           <div class="full-width">
             <h6>Name of the candidate:</h6>
-            <input type="text" name="name" placeholder="Enter your name" class="long-input" />
+            <input type="text" name="name" value="<%= student.name %>" placeholder="Enter your name" class="long-input" />
           </div>
 
           <div class="detail4 form-group">
             <h6>Department:</h6>
-            <select name="department">
-              <option value="" disabled selected>Select Dept</option>
-              <option value="Computer Science">Computer Science</option>
-              <option value="Information Technology">Information Technology</option>
-              <option value="Artificial Intelligence">Artificial Intelligence</option>
-              <option value="Electronics And Communication">Electronics And Communication</option>
-              <option value="Mechanical">Mechanical</option>
-            </select>
+                <select name="department">
+                  <option value="" disabled <%= !student.department ? "selected" : "" %>>Select Dept</option>
+                  <option value="Computer Science" <%= student.department === "Computer Science" ? "selected" : "" %>>Computer Science</option>
+                  <option value="Information Technology" <%= student.department === "Information Technology" ? "selected" : "" %>>Information Technology</option>
+                  <option value="Artificial Intelligence" <%= student.department === "Artificial Intelligence" ? "selected" : "" %>>Artificial Intelligence</option>
+                  <option value="Electronics And Communication" <%= student.department === "Electronics And Communication" ? "selected" : "" %>>Electronics And Communication</option>
+                  <option value="Mechanical" <%= student.department === "Mechanical" ? "selected" : "" %>>Mechanical</option>
+                </select>
           </div>
 
           <div class="detail4 form-group">
             <h6>Batch:</h6>
             <select name="batch">
-              <option value="" disabled selected>Select Batch</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
+              <option value="" disabled <%= !student.batch ? "selected" : "" %>>Select Batch</option>
+              <option value="2022" <%= student.batch == 2022 ? "selected" : "" %>>2022</option>
+              <option value="2023" <%= student.batch == 2023 ? "selected" : "" %>>2023</option>
+              <option value="2024" <%= student.batch == 2024 ? "selected" : "" %>>2024</option>
+              <option value="2025" <%= student.batch == 2025 ? "selected" : "" %>>2025</option>
             </select>
+
           </div>          
 
           <div class="detail2 form-group">
             <h6>Date Of Birth:</h6>
-            <input type="date" name="dob" />
+            <input type="date" name="dob" value="<%= student.dob %>" />
           </div>
 
           <div class="detail3 form-group">
             <h6>Age:</h6>
-            <input type="text" name="age" placeholder="Enter Age" />
+            <input type="text" name="age" value="<%= student.age %>" placeholder="Enter Age" />
           </div>
 
           <div class="detail4 form-group">
             <h6>Gender:</h6>
             <select name="gender">
-              <option value="" disabled selected>Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="" disabled <%= !student.gender ? "selected" : "" %>>Select Gender</option>
+              <option value="male" <%= student.gender === "male" ? "selected" : "" %>>Male</option>
+              <option value="female" <%= student.gender === "female" ? "selected" : "" %>>Female</option>
             </select>
           </div>
 
           <div class="detail5 form-group">
             <h6>Blood Group:</h6>
-            <input type="text" name="bloodGroup" placeholder="Enter blood group" />
+            <input type="text" name="bloodGroup" value="<%= student.bloodGroup %>" placeholder="Enter blood group" />
           </div>
 
           <div class="detail6 form-group">
             <h6>Community:</h6>
             <select name="Community">
-              <option value="" disabled selected>Select Community</option>
-              <option value="OC">OC</option>
-              <option value="BC">BC</option>
-              <option value="BCM">BCM</option>
-              <option value="MBC">MBC</option>
-              <option value="DNC">DNC</option>
-              <option value="SC">SC</option>
-              <option value="SCA">SCA</option>
-              <option value="SCC">SCC</option>
-              <option value="ST">ST</option>
+              <option value="" disabled <%= !student.community ? "selected" : "" %>>Select Community</option>
+              <option value="OC" <%= student.community === "OC" ? "selected" : "" %>>OC</option>
+              <option value="BC" <%= student.community === "BC" ? "selected" : "" %>>BC</option>
+              <option value="BCM" <%= student.community === "BCM" ? "selected" : "" %>>BCM</option>
+              <option value="MBC" <%= student.community === "MBC" ? "selected" : "" %>>MBC</option>
+              <option value="DNC" <%= student.community === "DNC" ? "selected" : "" %>>DNC</option>
+              <option value="SC" <%= student.community === "SC" ? "selected" : "" %>>SC</option>
+              <option value="SCA" <%= student.community === "SCA" ? "selected" : "" %>>SCA</option>
+              <option value="SCC" <%= student.community === "SCC" ? "selected" : "" %>>SCC</option>
+              <option value="ST" <%= student.community === "ST" ? "selected" : "" %>>ST</option>
             </select>
           </div>
 
           <div class="detail7 form-group">
             <h6>Religion:</h6>
             <select name="religion" id="religion">
-              <option value="" disabled selected>Select religion</option>
-              <option value="Hindu">Hindu</option>
-              <option value="Christian">Christian</option>
-              <option value="Muslim">Muslim</option>
+              <option value="" disabled <%= !student.religion ? "selected" : "" %>>Select religion</option>
+              <option value="Hindu" <%= student.religion === "Hindu" ? "selected" : "" %>>Hindu</option>
+              <option value="Christian" <%= student.religion === "Christian" ? "selected" : "" %>>Christian</option>
+              <option value="Muslim" <%= student.religion === "Muslim" ? "selected" : "" %>>Muslim</option>
             </select>
           </div>
 
           <div class="detail8 form-group">
             <h6>Caste:</h6>
-            <input type="text" name="caste" placeholder="Enter caste" />
+            <input type="text" name="caste" value="<%= student.caste %>" placeholder="Enter caste" />
           </div>
 
           <div class="detail9 form-group">
             <h6>Nationality:</h6>
-            <input type="text" name="nationality" placeholder="Enter nationality" />
+            <input type="text" name="nationality" value="<%= student.nationality %>" placeholder="Enter nationality" />
           </div>
 
           <div class="detail10 form-group">
             <h6>Mother Tongue:</h6>
-            <input type="text" name="motherTongue" placeholder="enter mother tongue" />
+            <input type="text" name="motherTongue" value="<%= student.motherTongue %>" placeholder="enter mother tongue" />
           </div>
 
           <div class="detail11 form-group">
             <h6>Aadhar number:</h6>
-            <input type="text" name="aadharNum" placeholder="Enter Aadhar number" />
+            <input type="text" name="aadharNum" value="<%= student.aadharNo %>" placeholder="Enter Aadhar number" />
           </div>
           
           <div class="detail4 form-group">
             <h6>Scholarship:</h6>
             <select name="scholarship">
-              <option value="" disabled selected>Select Scholarship</option>
-              <option value="Community">Community</option>
-              <option value="Merit">Merit</option>
-              <option value="Sports">Sports</option>
-              <option value="None">None</option>
+              <option value="" disabled <%= !student.scholarship ? "selected" : "" %>>Select Scholarship</option>
+              <option value="Community" <%= student.scholarship === "Community" ? "selected" : "" %>>Community</option>
+              <option value="Merit" <%= student.scholarship === "Merit" ? "selected" : "" %>>Merit</option>
+              <option value="Sports" <%= student.scholarship === "Sports" ? "selected" : "" %>>Sports</option>
+              <option value="None" <%= student.scholarship === "None" ? "selected" : "" %>>None</option>
             </select>
-          </div>  
+          </div>
 
           <div class="detail4 form-group">
             <h6>Transport:</h6>
-            <select name="scholarship">
-              <option value="" disabled selected>Select Transport</option>
-              <option value="Bus">Bus</option>
-              <option value="Train">Train</option>
-              <option value="Two Wheeler">Two Wheeler</option>
-              <option value="Four Wheeler">Four Wheeler</option>
+            <select name="transport">
+              <option value="" disabled <%= !student.transport ? "selected" : "" %>>Select Transport</option>
+              <option value="Bus" <%= student.transport === "Bus" ? "selected" : "" %>>Bus</option>
+              <option value="Train" <%= student.transport === "Train" ? "selected" : "" %>>Train</option>
+              <option value="Two Wheeler" <%= student.transport === "Two Wheeler" ? "selected" : "" %>>Two Wheeler</option>
+              <option value="Four Wheeler" <%= student.transport === "Four Wheeler" ? "selected" : "" %>>Four Wheeler</option>
             </select>
-          </div> 
+          </div>          
 
           <div class="detail13 combined">
             <span class="combinedSpan">
               <h6>City:</h6>
-              <input type="text" name="city" placeholder="Enter city" class="long-input" />
+              <input type="text" name="city" value="<%= student.city %>" placeholder="Enter city" class="long-input" />
             </span>
 
             <span class="combinedSpan">
               <h6>State:</h6>
-              <input type="text" name="state" placeholder="Enter state" class="long-input" />
+              <input type="text" name="state" value="<%= student.state %>" placeholder="Enter state" class="long-input" />
             </span>
           </div>
 
           <div class="detail14 combined">
             <span class="combinedSpan">
               <h6>District:</h6>
-              <input list="districtList" placeholder="Enter district" name="district" class="long-input districtList" />
+              <input list="districtList" placeholder="Enter district" name="district" value="<%= student.district %>" class="long-input districtList" />
               <datalist id="districtList">
                 <option value="Ariyalur"></option>
                 <option value="Chengalpattu"></option>
@@ -283,19 +278,19 @@
 
             <span class="combinedSpan">
               <h6>Pin code:</h6>
-              <input type="text" name="pinCode" placeholder="Enter pin code" class="long-input" />
+              <input type="text" name="pinCode" value="<%= student.pinCode %>" placeholder="Enter pin code" class="long-input" />
             </span>
           </div>
 
           <div class="detail15 form-group full-width">
             <h6>Contact Number:</h6>
-            <input type="number" name="contactNo" placeholder="Enter Ph number" class="fourColInp" />
+            <input type="number" name="contactNo" value="<%= student.phoneNo %>" placeholder="Enter Ph number" class="fourColInp" />
           </div>
 
           <div class="detail17 form-group full-width rounded-bottom">
             <h6>email:</h6>
-            <input type="text" name="email" placeholder="Enter email" class="fourColInp" />
-          </div>          
+            <input type="text" name="email" value="<%= student.email %>" placeholder="Enter email" class="fourColInp" />
+          </div>
 
           <div class="btn full-width rounded-bottom">
             <button class="submitBtn">Submit</button>
@@ -303,50 +298,6 @@
         </form>
       </main>
 
-      <!-- The logout pop-up which appears when the logout button is clicked -->
-      <div class="logout-popup">
-        <div class="logout-msg">
-          <h1>
-            Are you sure you want to log out?
-          </h1>
-          <div class="logout-btns">
-            <button onclick="removeLogoutPopup();">Cancel</button>
-            <button id="logout" onclick="removeLogoutPopup();">Log Out</button>
-          </div>
-        </div>
-      </div>      
-
     <script src="/javaScript/<%= jsFile %>.js"></script>
-    <!-- <script src="/javaScript/studentsList.js"></script> -->
-    <script>
-          // Flash messages from Express (rendered using EJS)
-          const successMsg = "<%= success && success.length > 0 ? success[0] : '' %>";
-          const errorMsg = "<%= error && error.length > 0 ? error[0] : '' %>";
-
-          const container = document.createElement('div');
-          container.id = 'toast-container';
-          document.body.appendChild(container);
-
-          function showToast(message, type) {
-            if (!message) return;
-          
-            const toast = document.createElement('div');
-            toast.classList.add('toast', `toast-${type}`);
-            toast.textContent = message;
-          
-            container.appendChild(toast);
-          
-            // Remove toast after 3s
-            setTimeout(() => {
-              toast.style.animation = "fadeOut 0.4s forwards";
-              setTimeout(() => toast.remove(), 400);
-            }, 3000);
-          }
-        
-          // Conditionally show messages
-          if (successMsg) showToast(successMsg, 'success');
-          if (errorMsg) showToast(errorMsg, 'error');
-        </script>
-
   </body>
 </html>

@@ -1,279 +1,3 @@
-:root {
-  --nav-bg: #1a1a2e;
-  --primary-bg: #f8f9fa;
-  --secondary-bg: #e9ecef;
-  --hover-bg: #16213e;
-  --active-bg: #0f3460;
-  --text-dark: #212529;
-  --text-light: #f8f9fa;
-  --border-radius: 8px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --accent-color: #4a6fa5;
-  --success-color: #28a745;
-  --warning-color: #ffc107;
-  --danger-color: #dc3545;
-}
-
-/* Global Styles & Resets */
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
-  color: #1a1a2e;
-  text-wrap: ellipsis;
-}
-
-/* The top heading */
-header {
-  width: 100%;
-  height: 50px;
-  color: white;
-  background-color: var(--nav-bg);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: 600;
-}
-
-/* The navigation-panel and its components and styles */
-body {
-  background-color: var(--primary-bg);
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  color: var(--text-dark);
-}
-
-/* App Container */
-.app-container {
-  height: calc(100vh - 50px);
-  width: 100%;
-  display: flex;
-  position: relative;
-}
-
-/* Navigation Panel */
-.navigation-panel {
-  width: 17vw;
-  height: 100%;
-  background-color: var(--nav-bg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 16px 0;
-  position: relative;
-  left: 0;
-  transition: var(--transition);
-  z-index: 100;
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  font-size: 16px;
-}
-
-.navigation-panel.collapsed {
-  transition: var(--transition);
-  width: 55px;
-  color: var(--nav-bg);
-}
-
-.navigation-panel.collapsed .nav-item-details {
-  transition: var(--transition);
-  display: none;
-}
-
-.navigation-panel.collapsed .nav-header {
-  padding-bottom: 22px;
-}
-
-.navigation-panel.collapsed .navHeading {
-  transition: var(--transition);
-  display: none;
-}
-
-.navigation-panel.collapsed .user-info {
-  transition: var(--transition);
-  display: none;
-}
-
-.navigation-panel.collapsed .fa-bars {
-  color: white;
-  font-size: 22px;
-}
-
-.navigation-panel.collapsed .nav-item i {
-  color: white;
-}
-
-.navigation-panel.collapsed .nav-item {
-  justify-content: center;
-  padding: 0;
-}
-
-.navigation-panel.collapsed .nav-item:hover {
-  background-color: #6f8cb836;
-  transform: translate(0, 0);
-  font-size: 25px;
-}
-
-.nav-header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 0px 12px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 16px;
-}
-
-.nav-title {
-  color: var(--text-light);
-  font-size: 1.2rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.nav-title i {
-  font-size: 1.2rem;
-  color: white;
-}
-
-.nav-menu {
-  width: 100%;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 0 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: white;
-}
-
-.nav-item {
-  width: 100%;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  padding-left: 8px;
-  color: rgba(255, 255, 255, 0.7);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  text-decoration: none;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-}
-
-
-.nav-item:hover {
-  background-color: var(--hover-bg);
-  color: var(--text-light);
-  transform: translateX(4px);
-}
-
-/*temporary disabled for an item with active class*/
-/* .nav-item.active {
-  background-color: var(--active-bg);
-  color: var(--text-light);
-  font-weight: 500;
-} */
-
-.nav-item i {
-  font-size: 1.1rem;
-  color: white;
-  width: 24px;
-  text-align: center;
-}
-
-.navHeading {
-  color: white;
-}
-
-.nav-item-details {
-  font-size: 16px;
-  font-weight: normal;
-  color: rgba(255, 255, 255, 0.7);
-  margin-left: 12px;
-}
-
-.nav-footer {
-  height: 71px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.user-profile {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-wrap: ellipsis;
-  white-space: nowrap;
-}
-
-.user-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: var(--active-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-light);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.user-info {
-  color: var(--text-light);
-}
-
-.user-name {
-  font-size: 0.8rem;
-  font-weight: normal;
-  color: white;
-}
-
-.user-role {
-  font-size: 0.7rem;
-  opacity: 0.7;
-  color: white;
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  padding: 24px;
-  overflow: auto;
-  transition: var(--transition);
-}
-
-/* Navigation bar styling */
-.navbar {
-  width: 100%;
-  height: 60px;
-  color: white;
-  background-color: #122e3f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  font-weight: 600;
-}
-
 /* Form Styling & Grid Layout */
 form {
   width: 100%;
@@ -311,18 +35,19 @@ form h6{
 
 .submitBtn {
   width: 30%;
-  height: 90%;
+  height: 95%;
   border-radius: 8px;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.7);
+  color: white;
+  background-color: #1a1a2e;
   border: 2px solid rgba(26, 26, 46, 0.75);
   outline: none;
   transition: all 0.2s ease;
 }
 
 .submitBtn:hover {
-  background-color: #1a1a2e;
-  color: white;
+  background-color: #1a1a2ef3;
+  cursor: pointer;
+  box-shadow: 0 0 5px #000000dc;
 }
 
 /* Apply background color and border to all form sections */
@@ -364,14 +89,14 @@ select {
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   padding: 0px 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
   color: black;
 }
 
 /* Style the options within select dropdowns */
 select option {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
   color: black;
 }
@@ -616,57 +341,5 @@ input[list]::-webkit-calendar-picker-indicator {
 
 /* Remove the dropdown arrow from the datalist in Firefox */
 input[list]::-moz-list-dropdown {
-  display: none;
-}
-
-/* The transportation column */
-.transportDiv{
-  grid-column: span 4;
-  grid-row: span 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: none;
-}
-
-.transportInner1{
-  height: 55px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2px 30px;
-  /* border: none; */
-}
-
-.transportInner2{
-  height: 55px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2px 30px;
-  display: none;
-  /* border: none; */
-}
-
-.transportInner3{
-  height: 55px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2px 30px;
-  gap: 20px;
-  display: none;
-  /* border: none; */
-}
-
-.transportInner4{
-  height: 55px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2px 30px;
-  gap: 20px;
-  /* border: none; */
   display: none;
 }

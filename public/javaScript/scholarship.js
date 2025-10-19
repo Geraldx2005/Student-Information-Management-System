@@ -2,33 +2,34 @@ const navPanel = document.getElementById("navPanel");
 const navHeader = document.querySelector(".nav-header");
 const deleteIcon = document.querySelector(".trash");
 const deletePopup = document.querySelector(".delete-popup");
+const logoutPopup = document.querySelector(".logout-popup");
 const tableBody = document.querySelector(".table-body");
-const downloadSelector = document.getElementById('downloadSelector');
-const triggerBtn = downloadSelector.querySelector('.download-selector__trigger');
+const downloadSelector = document.getElementById("downloadSelector");
+const triggerBtn = downloadSelector.querySelector(".download-selector__trigger");
 
 // Toggle dropdown on click
-triggerBtn.addEventListener('click', (e) => {
+triggerBtn.addEventListener("click", (e) => {
   e.stopPropagation();
-  downloadSelector.classList.toggle('download-selector--active');
-  
+  downloadSelector.classList.toggle("download-selector--active");
+
   // Rotate chevron icon
-  const icon = triggerBtn.querySelector('.download-selector__trigger-icon');
-  if (downloadSelector.classList.contains('download-selector--active')) {
-      icon.style.transform = 'rotate(180deg)';
+  const icon = triggerBtn.querySelector(".download-selector__trigger-icon");
+  if (downloadSelector.classList.contains("download-selector--active")) {
+    icon.style.transform = "rotate(180deg)";
   } else {
-      icon.style.transform = 'rotate(0deg)';
+    icon.style.transform = "rotate(0deg)";
   }
 });
 
 // Close dropdown when clicking outside
-document.addEventListener('click', () => {
-  downloadSelector.classList.remove('download-selector--active');
-  const icon = triggerBtn.querySelector('.download-selector__trigger-icon');
-  icon.style.transform = 'rotate(0deg)';
+document.addEventListener("click", () => {
+  downloadSelector.classList.remove("download-selector--active");
+  const icon = triggerBtn.querySelector(".download-selector__trigger-icon");
+  icon.style.transform = "rotate(0deg)";
 });
 
 // Prevent dropdown from closing when clicking inside
-downloadSelector.querySelector('.download-selector__menu').addEventListener('click', (e) => {
+downloadSelector.querySelector(".download-selector__menu").addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
@@ -49,6 +50,33 @@ deletePopup.addEventListener("click", (event) => {
     deletePopup.classList.remove("show");
   }
 });
+
+// Toggles the logout popup when clicking the logout icon.
+function showLogoutpopup(event) {
+  event.stopPropagation();
+  logoutPopup.classList.toggle("show");
+}
+
+// Hides the delete popup when clicking outside of it.
+logoutPopup.addEventListener("click", (event) => {
+  if (event.target == logoutPopup) {
+    logoutPopup.classList.remove("show");
+  }
+});
+
+// Removes the logout popup when clicking the conformation button.
+function removeLogoutPopup() {
+  logoutPopup.classList.remove("show");
+}
+
+// Triggers the edit page when clicking the edit icon.
+function showEditPage(event, studentId) {
+  event.stopPropagation(); // prevents parent click
+  console.log("edit clicked:", studentId);
+
+  // Open the edit page in a new tab
+  window.location.href = `/form/edit/${studentId}`;
+}
 
 // Removes the delete popup when clicking the conformation button.
 function removePopup() {
@@ -81,18 +109,16 @@ function confirmDelete() {
         }
 
         // Remove the item from the global items array
-        window.__ITEMS__ = window.__ITEMS__.filter(
-          (item) => item._id !== deleteId
-        );
+        window.__ITEMS__ = window.__ITEMS__.filter((item) => item._id !== deleteId);
 
         // Rebuild the rows (same as you did on page load)
         const updatedRows = window.__ITEMS__.map((student) => {
           return `
         <div class="table-row" id="${s._id}" onclick="window.open('/scholarship/student/${s._id}', '_blank')">
-      <div class="table-cell">${s.roll_number}</div>
-      <div class="table-cell">${s.student_id}</div>
+      <div class="table-cell">${s.rollNumber}</div>
+      <div class="table-cell">${s.studentId}</div>
       <div class="table-cell">${s.batch}</div>
-      <div class="table-cell">${s.student_name}</div>
+      <div class="table-cell">${s.name}</div>
       <div class="table-cell">${s.scholarship}</div>
       <div class="table-cell action-buttons">
         <button><i class="fa-solid fa-pen-to-square"></i></button>
@@ -135,8 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
     rows: [],
     scrollId: "scrollArea",
     contentId: "contentArea",
-    rows_in_block: 20,         // default is 50
-    blocks_in_cluster: 2       // default is 4
+    rows_in_block: 20, // default is 50
+    blocks_in_cluster: 2, // default is 4
   });
 
   // Assuming your student names are passed as JSON in a script tag or fetched via AJAX
@@ -144,18 +170,16 @@ document.addEventListener("DOMContentLoaded", () => {
   window.__ITEMS__ = students;
 
   if (!students || students.length === 0) {
-    clusterize.update([
-      `<div class="noData"> No students here... for now! </div>`,
-    ]);
+    clusterize.update([`<div class="noData"> No students here... for now! </div>`]);
   } else {
     // Wrap the data processing in a small timeout to ensure loading state is visible
     const studentRows = students.map(
       (s) => `
         <div class="table-row" id="${s._id}" onclick="window.open('/scholarship/student/${s._id}', '_blank')">
-      <div class="table-cell">${s.roll_number}</div>
-      <div class="table-cell">${s.student_id}</div>
+      <div class="table-cell">${s.rollNumber}</div>
+      <div class="table-cell">${s.studentId}</div>
       <div class="table-cell">${s.batch}</div>
-      <div class="table-cell">${s.student_name}</div>
+      <div class="table-cell">${s.name}</div>
       <div class="table-cell">${s.scholarship}</div>
       <div class="table-cell action-buttons">
         <button><i class="fa-solid fa-pen-to-square"></i></button>
@@ -176,10 +200,10 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
   setTimeout(() => {
     const dropdown = document.getElementById("downloadSelector");
     dropdown.classList.remove("download-selector--active");
-    const icon = dropdown.querySelector('.download-selector__trigger-icon');
-    icon.style.transform = 'rotate(0deg)';
+    const icon = dropdown.querySelector(".download-selector__trigger-icon");
+    icon.style.transform = "rotate(0deg)";
   }, 1000);
-  
+
   const button = document.getElementById("downloadPDF");
   // Prevent multiple clicks
   if (button.dataset.clicked === "true") return;
@@ -215,16 +239,13 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
     try {
       // Center the image by calculating the x position
       const xPosition = (pageWidth - imageWidth) / 2;
-      doc.addImage( "/assets/list-heading.png", "PNG", xPosition, 8, imageWidth, imageHeight );
+      doc.addImage("/assets/list-heading.png", "PNG", xPosition, 8, imageWidth, imageHeight);
     } catch (imgError) {
       // If image fails, center the text instead
       console.warn("Failed to add logo:", imgError);
-      doc.text(
-        "Jayaraj Annapackiam CSI College of Engineering, Nazareth",
-        pageWidth / 2,
-        marginTop + imageHeight / 2,
-        { align: "center" }
-      );
+      doc.text("Jayaraj Annapackiam CSI College of Engineering, Nazareth", pageWidth / 2, marginTop + imageHeight / 2, {
+        align: "center",
+      });
     }
 
     // Rest of the content shifted down
@@ -239,13 +260,7 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
     );
 
     const students = window.__ITEMS__;
-    const rows = students.map((s) => [
-      s.roll_number,
-      s.student_id,
-      s.batch,
-      s.student_name,
-      s.scholarship,
-    ]);
+    const rows = students.map((s) => [s.rollNumber, s.studentId, s.batch, s.name, s.scholarship]);
 
     // Configure table
     doc.autoTable({
@@ -257,14 +272,14 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
         cellPadding: 2,
       },
       alternateRowStyles: {
-        fillColor: false // DISABLE alternate row styling
+        fillColor: false, // DISABLE alternate row styling
       },
       headStyles: {
         fillColor: [255, 255, 255],
         textColor: [0, 0, 0],
         lineWidth: 0.2,
         lineColor: [0, 0, 0],
-        fontStyle: 'bold',
+        fontStyle: "bold",
       },
       bodyStyles: {
         fillColor: [255, 255, 255],
@@ -299,24 +314,24 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
 
 // EventListener which triggers the excel sheet generation.
 document.getElementById("downloadXLS").addEventListener("click", async () => {
-    // Close the dropdown after 1 second
-    setTimeout(() => {
-      const dropdown = document.getElementById("downloadSelector");
-      dropdown.classList.remove("download-selector--active");
-      const icon = dropdown.querySelector('.download-selector__trigger-icon');
-      icon.style.transform = 'rotate(0deg)';
-    }, 1000);
-  
-  const button = document.getElementById("downloadXLS");
-    // Prevent multiple clicks
-    if (button.dataset.clicked === "true") return;
-    button.dataset.clicked = "true";
+  // Close the dropdown after 1 second
+  setTimeout(() => {
+    const dropdown = document.getElementById("downloadSelector");
+    dropdown.classList.remove("download-selector--active");
+    const icon = dropdown.querySelector(".download-selector__trigger-icon");
+    icon.style.transform = "rotate(0deg)";
+  }, 1000);
 
-    // Makes the download button clickable again after 2 seconds
-    setTimeout(() => {
-      button.dataset.clicked = "false";
-      button.classList.remove("no-click");
-    }, 2000);
+  const button = document.getElementById("downloadXLS");
+  // Prevent multiple clicks
+  if (button.dataset.clicked === "true") return;
+  button.dataset.clicked = "true";
+
+  // Makes the download button clickable again after 2 seconds
+  setTimeout(() => {
+    button.dataset.clicked = "false";
+    button.classList.remove("no-click");
+  }, 2000);
 
   const originalText = button.innerHTML;
 
@@ -350,17 +365,17 @@ document.getElementById("downloadXLS").addEventListener("click", async () => {
 });
 
 // Logout route
-document.getElementById('logout').addEventListener('click', async () => {
-  const res = await fetch('/logout', {
-    method: 'POST',
-    credentials: 'include' // to send cookies with the request
+document.getElementById("logout").addEventListener("click", async () => {
+  const res = await fetch("/logout", {
+    method: "POST",
+    credentials: "include", // to send cookies with the request
   });
 
   if (res.ok) {
     // Optional: redirect to login page
-    window.location.href = '/login';
+    window.location.href = "/login";
   } else {
-    alert('Logout failed');
+    alert("Logout failed");
   }
 });
 
@@ -375,14 +390,14 @@ function getCookie(name) {
 // In every secure page's JS file or a shared auth.js
 async function refreshToken() {
   try {
-    const res = await fetch('/refresh-token', {
-      method: 'POST',
-      credentials: 'include'
+    const res = await fetch("/refresh-token", {
+      method: "POST",
+      credentials: "include",
     });
     const data = await res.json();
-    console.log('Token refresh:', data.message);
+    console.log("Token refresh:", data.message);
   } catch (err) {
-    console.error('Token refresh error:', err);
+    console.error("Token refresh error:", err);
   }
 }
 

@@ -12,6 +12,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/css/studentsList.css" />
+    <link rel="stylesheet" href="/css/toast.css" />
   </head>
   <body>
     <header class="header">
@@ -37,9 +38,7 @@
               </span>
           </div>
       </div>
-        <!-- <button id="downloadXLS" class="btn">Download XLS</button>
-        <button id="downloadPDF" class="btn">Download PDF</button> -->
-        <button id="logout" class="logOutBtn" title="Log out"><i class="fa-solid fa-door-open"></i></button>
+        <button class="logOutBtn" onclick="showLogoutpopup(event)" title="Log out"><i class="fa-solid fa-door-open"></i></button>
       </div>
     </header>
 
@@ -126,7 +125,7 @@
                 <select class="filter-select" id="departmentFilter" name="department">
                   <option value="" selected disabled hidden> Choose Department </option>
                   <option value="Computer Science" <%= data.department == 'Computer Science' ? 'selected' : '' %>>Computer Science</option>
-                  <option value="Information Technology" <%= data.department == 'Information Technology' ? 'selected' : '' %>> Information Technology </option>
+                  <option value="Information Technology" <%= data.department == 'Information Technology' ? 'selected' : '' %>>Information Technology</option>
                   <option value="Artificial Intelligence" <%= data.department == 'Artificial Intelligence' ? 'selected' : '' %>> Artificial Intelligence </option>
                   <option value="Electronics And Communication" <%= data.department == 'Electronics And Communication' ? 'selected' : '' %>> Electronics And Communication </option>
                   <option value="Mechanical" <%= data.department == 'Mechanical' ? 'selected' : '' %>>Mechanical</option>
@@ -136,12 +135,10 @@
               <div class="filter-group">
                 <select class="filter-select" id="batchFilter" name="batch">
                   <option value="" disabled hidden selected> Choose batch </option>
-                  <option value="2018" <%= data.batch == '2018' ? 'selected' : '' %>>2018</option>
-                  <option value="2019" <%= data.batch == '2019' ? 'selected' : '' %>>2019</option>
-                  <option value="2020" <%= data.batch == '2020' ? 'selected' : '' %>>2020</option>
-                  <option value="2021" <%= data.batch == '2021' ? 'selected' : '' %>>2021</option>
                   <option value="2022" <%= data.batch == '2022' ? 'selected' : '' %>>2022</option>
                   <option value="2023" <%= data.batch == '2023' ? 'selected' : '' %>>2023</option>
+                  <option value="2024" <%= data.batch == '2024' ? 'selected' : '' %>>2024</option>
+                  <option value="2025" <%= data.batch == '2025' ? 'selected' : '' %>>2025</option>
                 </select>
               </div>
 
@@ -177,6 +174,21 @@
           </div>
         </div>
       </div>
+
+      <!-- The delete pop-up which appears when the delete button is clicked -->
+      <div class="logout-popup">
+        <div class="logout-msg">
+          <h1>
+            Are you sure you want to log out?
+          </h1>
+          <div class="logout-btns">
+            <button onclick="cancelDelete(); removeLogoutPopup();">Cancel</button>
+            <button id="logout" onclick="removeLogoutPopup();">Log Out</button>
+          </div>
+        </div>
+      </div>
+
+
     </div>
 
     <!-- The cdn's by which we are using the pdf and xls download feature -->
@@ -187,9 +199,38 @@
 
 
     <script src="/javaScript/vendor/clusterize.min.js"></script>
-    <script> 
+    <script>   
     window.studentList = <%- JSON.stringify(studentNames) %>;
     </script>
     <script src="/javaScript/studentslist.js" defer></script>
+    <script>
+      // Flash messages from Express (rendered using EJS)
+      const successMsg = "<%= success && success.length > 0 ? success[0] : '' %>";
+      const errorMsg = "<%= error && error.length > 0 ? error[0] : '' %>";
+        
+      const container = document.createElement('div');
+      container.id = 'toast-container';
+      document.body.appendChild(container);
+        
+      function showToast(message, type) {
+        if (!message) return;
+      
+        const toast = document.createElement('div');
+        toast.classList.add('toast', `toast-${type}`);
+        toast.textContent = message;
+      
+        container.appendChild(toast);
+      
+        // Remove toast after 3s
+        setTimeout(() => {
+          toast.style.animation = "fadeOut 0.4s forwards";
+          setTimeout(() => toast.remove(), 400);
+        }, 3000);
+      }
+    
+      // Conditionally show messages
+      if (successMsg) showToast(successMsg, 'success');
+      if (errorMsg) showToast(errorMsg, 'error');
+    </script> 
   </body>
 </html>

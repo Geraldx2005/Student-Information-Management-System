@@ -2,6 +2,7 @@ const navPanel = document.getElementById("navPanel");
 const navHeader = document.querySelector(".nav-header");
 const deleteIcon = document.querySelector(".trash");
 const deletePopup = document.querySelector(".delete-popup");
+const logoutPopup = document.querySelector(".logout-popup");
 const tableBody = document.querySelector(".table-body");
 const downloadSelector = document.getElementById('downloadSelector');
 const triggerBtn = downloadSelector.querySelector('.download-selector__trigger');
@@ -50,6 +51,34 @@ deletePopup.addEventListener("click", (event) => {
   }
 });
 
+
+// Toggles the logout popup when clicking the logout icon.
+function showLogoutpopup(event) {
+  event.stopPropagation();
+  logoutPopup.classList.toggle("show");
+}
+
+// Hides the delete popup when clicking outside of it.
+logoutPopup.addEventListener("click", (event) => {
+  if (event.target == logoutPopup) {
+    logoutPopup.classList.remove("show");
+  }
+});
+
+// Removes the logout popup when clicking the conformation button.
+function removeLogoutPopup() {
+  logoutPopup.classList.remove("show");
+}
+
+// Triggers the edit page when clicking the edit icon.
+function showEditPage(event, studentId) {
+  event.stopPropagation(); // prevents parent click
+  console.log("edit clicked:", studentId);
+  
+  // Open the edit page in a new tab
+  window.location.href = `/form/edit/${studentId}`;
+}
+
 // Removes the delete popup when clicking the conformation button.
 function removePopup() {
   deletePopup.classList.remove("show");
@@ -89,10 +118,10 @@ function confirmDelete() {
         const updatedRows = window.__ITEMS__.map((student) => {
           return `
             <div class="table-row" id="${student._id}" onclick="window.open('/transport/student/${student._id}', '_blank')">
-              <div class="table-cell">${student.roll_number}</div>
-              <div class="table-cell">${student.student_id}</div>
+              <div class="table-cell">${student.rollNumber}</div>
+              <div class="table-cell">${student.studentId}</div>
               <div class="table-cell">${student.batch}</div>
-              <div class="table-cell">${student.student_name}</div>
+              <div class="table-cell">${student.name}</div>
               <div class="table-cell">${student.transport}</div>
               <div class="table-cell action-buttons">
                 <button class="trash" onclick="showDeletePopup(event); saveDeleteId('${student._id}')">
@@ -151,10 +180,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const studentRows = students.map(
       (s) => `
         <div class="table-row" id="${s._id}" onclick="window.open('transport/student/${s._id}', '_blank')">
-      <div class="table-cell">${s.roll_number}</div>
-      <div class="table-cell">${s.student_id}</div>
+      <div class="table-cell">${s.rollNumber}</div>
+      <div class="table-cell">${s.studentId}</div>
       <div class="table-cell">${s.batch}</div>
-      <div class="table-cell">${s.student_name}</div>
+      <div class="table-cell">${s.name}</div>
       <div class="table-cell">${s.transport}</div>
       <div class="table-cell action-buttons">
         <button><i class="fa-solid fa-pen-to-square"></i></button>
@@ -243,12 +272,12 @@ document.getElementById("downloadPDF").addEventListener("click", async () => {
 
     const students = window.__ITEMS__;
     const rows = students.map((s) => [
-      s.roll_number,
-      s.student_id,
+      s.rollNumber,
+      s.studentId,
       s.batch,
-      s.student_name,
+      s.name,
       s.transport,
-      s.dept_code,
+      s.department,
     ]);
 
     // Configure table
@@ -338,10 +367,10 @@ const originalText = button.innerHTML;
     const wholeData = window.__ITEMS__;
     const jsonData = wholeData.map((student) => {
       return {
-        "Roll No": student.roll_number,
-        "Student ID": student.student_id,
+        "Roll No": student.rollNumber,
+        "Student ID": student.studentId,
         "Batch": student.batch,
-        "Name": student.student_name,
+        "Name": student.name,
         "Transport": student.transport,
       };
     });

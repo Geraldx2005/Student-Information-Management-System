@@ -16,7 +16,7 @@ router.get("/", authenticate, async (req, res) => {
 });
 
 // The route which handles the filter request from the client side.
-router.get("/filter",authenticate , async (req, res) => {
+router.get("/filter", authenticate, async (req, res) => {
   let data = req.query;
 
   if (data?.batch) {
@@ -32,7 +32,7 @@ router.get("/filter",authenticate , async (req, res) => {
 });
 
 // The route which handles the displays the detailed information of a student.
-router.get("/student/:id",authenticate, async (req, res) => {
+router.get("/student/:id", authenticate, async (req, res) => {
   let { id } = req.params;
   try {
     const student = await Student.findById(id);
@@ -45,8 +45,23 @@ router.get("/student/:id",authenticate, async (req, res) => {
   }
 });
 
+// The route which handles the update request from the edit student page.
+router.put("/student/:id", authenticate, async (req, res) => {
+  let { id } = req.params;
+  let updatedData = req.body;
+  try {
+    const student = await Student.findByIdAndUpdate(id, updatedData);
+    if (!student) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+    res.send("ok");
+  } catch (error) {
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+
 // Every data deleted from the students list will be moved to the recycle bin.
-router.delete("/student/:id",authenticate, async (req, res) => {
+router.delete("/student/:id", authenticate, async (req, res) => {
   let { id } = req.params;
   try {
     const deletedElement = await Student.findById(id);

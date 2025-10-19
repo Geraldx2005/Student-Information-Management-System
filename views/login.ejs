@@ -5,6 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="/css/login.css" />
+    <style>
+      /* Toast container (bottom-right corner) */
+      #toast-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 9999;
+      }
+      
+      /* Base toast style */
+      .toast {
+        min-width: 320px;
+        max-width: 440px;
+        padding: 12px 18px;
+        border-radius: 8px;
+        color: #fff;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideIn 0.3s ease forwards;
+      }
+      
+      /* Success and Error colors */
+      .toast-success {
+        background-color: #1a1a2e; /* green-600 */
+      }
+      
+      .toast-error {
+        background-color: #b92121; /* red-600 */
+      }
+      
+      /* Slide in animation */
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Fade out animation */
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+      }
+    </style> 
   </head>
   <body>
     <div class="container">
@@ -20,5 +71,34 @@
       </form>
     </div>
     <script src="/javaScript/login.js"></script>
+    <script>
+      // Flash messages from Express (rendered using EJS)
+      const successMsg = "<%= success && success.length > 0 ? success[0] : '' %>";
+      const errorMsg = "<%= error && error.length > 0 ? error[0] : '' %>";
+        
+      const container = document.createElement('div');
+      container.id = 'toast-container';
+      document.body.appendChild(container);
+        
+      function showToast(message, type) {
+        if (!message) return;
+      
+        const toast = document.createElement('div');
+        toast.classList.add('toast', `toast-${type}`);
+        toast.textContent = message;
+      
+        container.appendChild(toast);
+      
+        // Remove toast after 3s
+        setTimeout(() => {
+          toast.style.animation = "fadeOut 0.4s forwards";
+          setTimeout(() => toast.remove(), 400);
+        }, 3000);
+      }
+    
+      // Conditionally show messages
+      if (successMsg) showToast(successMsg, 'success');
+      if (errorMsg) showToast(errorMsg, 'error');
+    </script>
   </body>
 </html>

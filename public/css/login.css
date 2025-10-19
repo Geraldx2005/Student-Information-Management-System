@@ -22,8 +22,8 @@
     background-image: url("/assets/abstract_space.jpg");
     background-size: cover;
     object-fit: cover;
-    border-top-right-radius: 3.75rem; 
-    border-bottom-right-radius: 3.75rem; 
+    border-top-right-radius: 1.5rem; 
+    border-bottom-right-radius: 1.5rem; 
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
     z-index: 1;
 }

@@ -18,7 +18,7 @@
       <h1>Student Information Management System</h1>
 
       <div class="download-btns">
-        <button title="Log out" id="logout" class="logOutBtn" ><i class="fa-solid fa-door-open"></i></button>
+        <button title="Log out" onclick="showLogoutpopup(event)" class="logOutBtn" ><i class="fa-solid fa-door-open"></i></button>
       </div>
     </header>
     <div class="app-container">
@@ -167,6 +167,19 @@
         </div>
       </div>
     </div>
+
+      <!-- The logout pop-up which appears when the logout button is clicked -->
+      <div class="logout-popup">
+        <div class="logout-msg">
+          <h1>
+            Are you sure you want to log out?
+          </h1>
+          <div class="logout-btns">
+            <button onclick="removeLogoutPopup();">Cancel</button>
+            <button id="logout" onclick="removeLogoutPopup();">Log Out</button>
+          </div>
+        </div>
+      </div>     
 
     <!-- To reduce the size of the dom tree we are using clusterize.js -->
     <script src="/javaScript/vendor/clusterize.min.js"></script>

@@ -3,6 +3,7 @@ const navHeader = document.querySelector(".nav-header");
 // const deleteIcon = document.querySelector(".trash");
 // const recycleIcon = document.querySelector(".recycleBtn");
 const deletePopup = document.querySelector(".delete-popup");
+const logoutPopup = document.querySelector(".logout-popup");
 const recyclePopup = document.querySelector(".recycle-popup");
 const tableBody = document.querySelector(".table-body");
 
@@ -29,6 +30,34 @@ deletePopup.addEventListener("click", (event) => {
     deletePopup.classList.remove("show");
   }
 });
+
+
+// Toggles the logout popup when clicking the logout icon.
+function showLogoutpopup(event) {
+  event.stopPropagation();
+  logoutPopup.classList.toggle("show");
+}
+
+// Hides the delete popup when clicking outside of it.
+logoutPopup.addEventListener("click", (event) => {
+  if (event.target == logoutPopup) {
+    logoutPopup.classList.remove("show");
+  }
+});
+
+// Removes the logout popup when clicking the conformation button.
+function removeLogoutPopup() {
+  logoutPopup.classList.remove("show");
+}
+
+// Triggers the edit page when clicking the edit icon.
+function showEditPage(event, studentId) {
+  event.stopPropagation(); // prevents parent click
+  console.log("edit clicked:", studentId);
+  
+  // Open the edit page in a new tab
+  window.location.href = `/form/edit/${studentId}`;
+}
 
 // Hides the recycle bin popup when clicking outside of it.
 recyclePopup.addEventListener("click", (event) => {
@@ -92,7 +121,7 @@ function confirmRecycle() {
       <div class="table-cell">${s.department}</div>
       <div class="table-cell action-buttons">
         <button style="padding-top: 4px;"  onclick="showRecyclepopup(event); saveRecycleId('${s._id}');">
-        <i class="fa-solid fa-recycle fa-lg"></i>
+        <i class="fa-solid fa-rotate-right"></i>
         </button>
         <button class="trash" onclick="showDeletepopup(event); saveDeleteId('${s._id}');">
           <i class="fa-solid fa-trash"></i>
@@ -146,7 +175,7 @@ function confirmDelete() {
         <i class="fa-solid fa-rotate-right"></i>
         </button>
         <button class="trash" onclick="showDeletepopup(event); saveDeleteId('${s._id}');">
-          <i class="fa-solid fa-rotate-right"></i>
+          <i class="fa-solid fa-trash"></i>
         </button>
       </div>
     </div>
@@ -196,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Wrap the data processing in a small timeout to ensure loading state is visible
     const studentRows = students.map(
       (s) => `
-        <div class="table-row" id="${s._id}" onclick="window.open('/recycle/student/${s._id}', '_blank')">
+      <div class="table-row" id="${s._id}" onclick="window.open('/recycle/student/${s._id}', '_blank')">
       <div class="table-cell">${s.roll_number}</div>
       <div class="table-cell">${s.student_id}</div>
       <div class="table-cell">${s.batch}</div>
